@@ -1,10 +1,18 @@
 \section{Introduction}
-Housing prices are an important reflection of the economy, and pricing a rental property on Airbnb, therefore, can be a challenging task for the owner as it determines the number of customers for the place. On the other hand, customers have to evaluate an offered price with minimal knowledge of an optimal value for the property. This projects aims to develop a price prediction model using a range of machine learning methods.
-Parlare degli algoritmi che si useranno (da fare dopo gli altri capitoli).
+Housing prices are an important reflection of the economy, and pricing a rental property on Airbnb, therefore, can be a challenging task for the owner as it determines the number of customers for the place. On the other hand, customers have to evaluate an offered price with minimal knowledge of an optimal value for the property.
 
 \subsection{Goals}
+The aim of our project is to compute the price of a \textbf{BnB} through the main feature that characterize a property (\textit{e.g.}, position, facilities, property type), so as to propose to the owner and the possible host a fair amount for that particular real estate. In order to do that we divided the process in two phases:
+\begin{enumerate}
+	\item Preprocessing:
+	\item Classification:
+\end{enumerate}
+At the end of documentation, we propose an application in which a user can input some main features about a property for retrieving as output the appropriate price computed.
 
 \subsection{Initial Dataset}
+The fee of a real estate is strictly related to the city where it is located, thus would force us to recompute for every different city each step we make over and over, wasting time. Thus we decide to consider only one location (i.e, city), big enough to have a huge number of records. We chose \textit{New York City}.
+The dataset, related to all the \textbf{BnB} situated in \textit{NYC}, is taken from \url{http://insideairbnb.com/get-the-data.html} \footnote{In the case of the dataset form the website inside the \textit{listing.csv} file, related to NYC, is updated, we stored the dataset used on Google Drive. It can be downloaded at: \url{}}. All the imported data has been modified, updated and preprocessed in prefer to satisfy the study needs as the chapter 2 will describe.
+The volume of the coarse data, considering 54k approximately entries (i.e., BnB), is more or less 100MB.
 
 \medskip 
 % //
