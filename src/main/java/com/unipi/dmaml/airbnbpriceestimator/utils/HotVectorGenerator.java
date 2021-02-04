@@ -21,7 +21,7 @@ public class HotVectorGenerator {
                 // split the data
                 String[] featureArray = line.split(",");
                 // add the feature if it’s not present yet
-                for (String s : featureSet) {
+                for (String s : featureArray) {
                     if (!featureSet.contains(s))
                         featureSet.add(s);
                 }
@@ -31,8 +31,7 @@ public class HotVectorGenerator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.println(featureSet.size());
+        
         return featureSet;
     }
 }
