@@ -1,11 +1,39 @@
 \section{Preprocessing}
 
 \subsection{What can be preprocessed now?}
-Nel senso che essendo unsupervised lo possiamo fare prima di splitting in train/test
+Since we have to deal with classification problems, before preprocessing data we must be sure not to apply supervised filters on the whole dataset. If we need supervised filters, we must split the dataset in training set and test set before applying them. However, in our case there is no need for a supervised filters but  attribute selection, so we performed all the unsupervised preprocessing operations at the beginning, postponing the attribute selection after the training/test split.
 
 \subsection{Data Cleaning and Reduction}
+Since the Weka framework was not able to parse correctly the source file, for the following operations we used \textit{Microsoft Excel} and \textit{Apple Numbers}.
 
 \subsubsection{Removing Noisy and Irrelevant attributes}
-Metterci screenshot di excel o numbers
+The first preprocessing operation is the attribute reduction, indeed we decided to remove all the features that are not domain-specific, nor useful for classification purposes. Among them we deleted:
 
+\begin{enumerate}
+	\item \textbf{ID}s: \textit{Bnb\_ID, scrape\_id, host\_id}
+	\item \textbf{URL}s: \textit{listing\_url, picture\_url, host\_url, host\_thumbnail\_url, host\_picture\_url}
+	\item Scraping informations like \textit{last\_scraped\_date, calendar\_last\_scraped}
+	\item Useless information on the rent for classification purposes like \textit{name, description, first\_review\_date}
+	\item Useless information about the host like \textit{host\_name, host\_location} (it is not the place in which the rent is, but where the host lives), \textit{host\_about, host\_has\_profile\_pic}
+\end{enumerate}
 
+\subsubsection{Removing Redundant Attributes}
+The next step was the reduction of attributes explicitly redundant. For all of these we did not compute the $\chi^2$ test because of the explicit correlation between the features
+
+\begin{enumerate}
+	\item \textit{host\_neighbourhood and neighbourhood} \textbf{w.r.t.} the couple \textit{neighbourhood\_cleansed, neighbourhood\_group\_cleansed}
+	\item \textit{host\_total\_listings\_count} completely equal to \textit{host\_listing\_count}
+	\item \textit{host verification} \textbf{w.r.t.} \textit{host\_identity\_verified}
+	\item \textit{minimum\_minimum\_nights, minimum\_maximum\_nights, maximum\_minimum\_night, maximum\_maximum\_nights, minimum\_nights\_avg} and \textit{maximum\_nights\_avg} are redundancies of the \textit{attributes minimum\_nights} and \textit{maximum\_nights}
+	\item \textit{review\_scores\_accuracy, review\_scores\_cleanliness, review\_scores\_checkin, review\_scores\_communications, review\_scores\_location, review\_scores\_value} are rounded values that have been more precisely combined in another already-existing attribute that is \textit{review\_scores\_rating}
+	\item \textit{calculated\_host\_listings\_count} (+ category) are redundant attributes of \textit{listings\_count} valid only for their respective category
+\end{enumerate}
+
+\subsubsection{Additional Removed Features}
+Eventually, the other columns that have been discarded are:
+
+\begin{enumerate}
+	\item Attributes that strongly depend from the instant in which the scraping has been performed like \textit{has\_availability\_now, availability\_30, availability\_60, availability\_90, number\_of\_reviews\_ltm, number\_of\_reviews\_l30}
+	\item Empty attributes like \textit{license}
+	\item Others, like \textit{latitude} and \textit{longitude} that are not more useful than the easier data on the neighborhood
+\end{enumerate}

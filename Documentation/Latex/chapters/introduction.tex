@@ -2,17 +2,29 @@
 Housing prices are an important reflection of the economy, and pricing a rental property on Airbnb, therefore, can be a challenging task for the owner as it determines the number of customers for the place. On the other hand, customers have to evaluate an offered price with minimal knowledge of an optimal value for the property.
 
 \subsection{Goals}
-The aim of our project is to compute the price of a \textbf{BnB} through the main feature that characterize a property (\textit{e.g.}, position, facilities, property type), so as to propose to the owner and the possible host a fair amount for that particular real estate. In order to do that we divided the process in two phases:
+The aim of this paper is to explain the choices and the strategies we adopted on the project and development of \textbf{AirBnb Price Estimator}, whose aim is to help owners to decide the most correct price for their \textit{BnB}. 
+In order to accomplish it, we started from web-scraped data, we performed all the preprocessing needed for having a suitable dataset and then we built several classifiers, using different strategies, in order to determine the one that predicts best the class attribute. All these classifiers have been tested using more than one method and the analysis of the results guided us in the choice of the best classifier.
+Since the class attribute is numeric, we had two possible choices:
+
 \begin{enumerate}
-	\item Preprocessing:
-	\item Classification:
+	\item Discretize the attribute, choosing the most appropriate algorithm
+	\item Keep it numeric, using regression algorithms for the classification purposes
 \end{enumerate}
-At the end of documentation, we propose an application in which a user can input some main features about a property for retrieving as output the appropriate price computed.
+The first approach is surely easier, but it would not be as helpful as the second one for our application purposes: suggesting a precise value to an owner will give him/her a more accurate advice rather than a range.
+
+The regression model that generalizes best the class feature has then been chosen as the “heart” of AirBnB Price Estimator: the application asks users to input the required fields that correspond to the attributes needed by the classificatory. On these fields bases, it simply outputs to the user the suggested price for night.
 
 \subsection{Initial Dataset}
 The fee of a real estate is strictly related to the city where it is located, thus would force us to recompute for every different city each step we make over and over, wasting time. Thus we decide to consider only one location (i.e, city), big enough to have a huge number of records. We chose \textit{New York City}.
-The dataset, related to all the \textbf{BnB} situated in \textit{NYC}, is taken from \url{http://insideairbnb.com/get-the-data.html} \footnote{In the case of the dataset form the website inside the \textit{listing.csv} file, related to NYC, is updated, we stored the dataset used on Google Drive. It can be downloaded at: \url{}}. All the imported data has been modified, updated and preprocessed in prefer to satisfy the study needs as the chapter 2 will describe.
-The volume of the coarse data, considering 54k approximately entries (i.e., BnB), is more or less 100MB.
+The dataset, related to all the \textbf{BnB} situated in \textit{NYC}, is taken from \url{http://insideairbnb.com/get-the-data.html} \footnote{In the case of the dataset form the website inside the \textit{listing.csv} file, related to NYC, is updated, we stored the dataset used on Google Drive. It can be downloaded at: \url{https://drive.google.com/file/d/12ZA4Jo-MgQGGjnNVMUdDom8USHXBagr_/view?usp=sharing}}. The scraping has been performed the 11th December 2020 (the scraped data has been made available by third parties).
+
+The \textit{initial dataset} is composed by 44667 instances and 74 columns. In order not to confuse the reader with useless information, the attribute list is not here reported, however on the following chapter regarding preprocessing we justify in detail the actions performed on the data. For now, the most important things to know is that:
+
+\begin{enumerate}
+	\item The dataset is composed by various mixed features regarding the estate, the host and he geographical position
+	\item The source file has been published without respecting exactly the \textit{csv} format, thus some frameworks and \textit{csv} f handlers are not able to parse it
+	\item The initial data is very dirty: there are missing values, redundant attributes, lists of strings embedded in a single column, pointless features and so on. For all of these problems, a suitable solution has been provided and it is fully reported on the next chapter.
+\end{enumerate}
 
 \medskip 
 % //
