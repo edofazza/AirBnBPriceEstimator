@@ -73,6 +73,47 @@ public class ColumnHandler {
         }
     }
 
+    public void reviewScoreRating(String path, String newPath) {
+        clearFile(newPath);
+
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(newPath), StandardOpenOption.APPEND);
+        ) {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+
+            String line;
+            int minimumMark = 9999;
+
+            // GET THE MINIMUM
+            br.readLine(); // REMOVE THE HEADER
+            while((line = br.readLine())!=null) {
+                // IF EMPTY = ? THEN BOTH OF THE COLUMNS WILL BE EMPTY = ?
+                if (line.equals("?"))
+                    continue;
+
+                int parsedInt = Integer.parseInt(line);
+                minimumMark = minimumMark > parsedInt ? parsedInt : minimumMark;
+            }
+            minimumMark--;
+            br.close();
+
+            br = new BufferedReader(new FileReader(path));
+            // GET EACH LINE AND CREATE THE NEW LINE FROM IT
+            writer.write(br.readLine() + "\n");
+            while((line = br.readLine())!=null) {
+                // IF EMPTY = ? THEN BOTH OF THE COLUMNS WILL BE EMPTY = ?
+                if (line.equals("?")) {
+                    writer.write(minimumMark + "\n");
+                    continue;
+                }
+
+                writer.write(line + "\n");
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void clearFile(String path) {
         try (Writer fileWriter = new FileWriter(path, false)) {
             fileWriter.write("");

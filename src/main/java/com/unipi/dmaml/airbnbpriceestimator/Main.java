@@ -15,6 +15,7 @@ public class Main {
         */
         ColumnHandler columnHandler = new ColumnHandler();
         //columnHandler.bathroomColumns("csv/bathrooms.csv", "csv/bathroomsFormatted.csv");
-        columnHandler.removeDollarFromPrice("csv/price.csv", "csv/priceFormatted.csv");
+        //columnHandler.removeDollarFromPrice("csv/price.csv", "csv/priceFormatted.csv");
+        columnHandler.reviewScoreRating("csv/score.csv", "csv/scoreFormatted.csv");
     }
 }
