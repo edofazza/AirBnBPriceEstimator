@@ -49,6 +49,30 @@ public class ColumnHandler {
         }
     }
 
+    public void removeDollarFromPrice(String path, String newPath) {
+        clearFile(newPath);
+
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(newPath), StandardOpenOption.APPEND);
+             BufferedReader br = new BufferedReader(new FileReader(path))
+        ) {
+            // GET EACH LINE AND CREATE THE NEW LINE FROM IT
+            String line;
+
+            writer.write(br.readLine() + "\n");
+            while((line = br.readLine())!=null) {
+                // IF EMPTY = ? THEN BOTH OF THE COLUMNS WILL BE EMPTY = ?
+                if (line.equals("?")) {
+                    writer.write("?\n");
+                    continue;
+                }
+
+                writer.write(line.replace("$", "") + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void clearFile(String path) {
         try (Writer fileWriter = new FileWriter(path, false)) {
             fileWriter.write("");

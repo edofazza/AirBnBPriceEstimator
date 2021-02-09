@@ -14,6 +14,7 @@ public class Main {
         hotVectorGenerator.createHotVectorCSV("csv/result.csv", "csv/amenities.csv", features);
         */
         ColumnHandler columnHandler = new ColumnHandler();
-        columnHandler.bathroomColumns("csv/bathrooms.csv", "csv/bathroomsFormatted.csv");
+        //columnHandler.bathroomColumns("csv/bathrooms.csv", "csv/bathroomsFormatted.csv");
+        columnHandler.removeDollarFromPrice("csv/price.csv", "csv/priceFormatted.csv");
     }
 }
