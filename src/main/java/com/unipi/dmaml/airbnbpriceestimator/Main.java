@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
         HotVectorGenerator hotVectorGenerator = new HotVectorGenerator();
         List<String> features = hotVectorGenerator.getAllFeatures("csv/amenities.csv");
+        hotVectorGenerator.sortHeaders(features);
         hotVectorGenerator.createHotVectorCSV("csv/result.csv", "csv/amenities.csv", features);
     }
 }
