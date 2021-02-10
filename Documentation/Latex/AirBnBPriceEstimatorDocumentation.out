@@ -7,16 +7,22 @@
 \BOOKMARK [3][-]{subsubsection.2.2.1}{Removing Noisy and Irrelevant attributes}{subsection.2.2}% 7
 \BOOKMARK [3][-]{subsubsection.2.2.2}{Removing Redundant Attributes}{subsection.2.2}% 8
 \BOOKMARK [3][-]{subsubsection.2.2.3}{Additional Removed Features}{subsection.2.2}% 9
-\BOOKMARK [1][-]{section.3}{Classification}{}% 10
-\BOOKMARK [2][-]{subsection.3.1}{Strategies}{section.3}% 11
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Train and Test Splitting}{subsection.3.1}% 12
-\BOOKMARK [3][-]{subsubsection.3.1.2}{Chosen Classifiers}{subsection.3.1}% 13
-\BOOKMARK [2][-]{subsection.3.2}{Building Classification Models}{section.3}% 14
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Procedure}{subsection.3.2}% 15
-\BOOKMARK [3][-]{subsubsection.3.2.2}{Implementation}{subsection.3.2}% 16
-\BOOKMARK [2][-]{subsection.3.3}{Performance Evaluation and Effects od Attribute Selection}{section.3}% 17
-\BOOKMARK [2][-]{subsection.3.4}{Conclusions}{section.3}% 18
-\BOOKMARK [1][-]{section.4}{AirBnb Price Estimator App}{}% 19
-\BOOKMARK [2][-]{subsection.4.1}{Introduction}{section.4}% 20
-\BOOKMARK [2][-]{subsection.4.2}{Functional Requirements}{section.4}% 21
-\BOOKMARK [2][-]{subsection.4.3}{Application Guide}{section.4}% 22
+\BOOKMARK [2][-]{subsection.2.3}{Hot Vector for the Amenities}{section.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Data Cleaning and Reduction in the Amenities' Hot Vector}{subsection.2.3}% 11
+\BOOKMARK [2][-]{subsection.2.4}{Dealing with Mission Fields}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.5}{Data Integration and Transformation}{section.2}% 13
+\BOOKMARK [3][-]{subsubsection.2.5.1}{Attribute Formats Transformation}{subsection.2.5}% 14
+\BOOKMARK [3][-]{subsubsection.2.5.2}{Dealing with lists}{subsection.2.5}% 15
+\BOOKMARK [1][-]{section.3}{Classification}{}% 16
+\BOOKMARK [2][-]{subsection.3.1}{Strategies}{section.3}% 17
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Train and Test Splitting}{subsection.3.1}% 18
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Chosen Classifiers}{subsection.3.1}% 19
+\BOOKMARK [2][-]{subsection.3.2}{Building Classification Models}{section.3}% 20
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Procedure}{subsection.3.2}% 21
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Implementation}{subsection.3.2}% 22
+\BOOKMARK [2][-]{subsection.3.3}{Performance Evaluation and Effects od Attribute Selection}{section.3}% 23
+\BOOKMARK [2][-]{subsection.3.4}{Conclusions}{section.3}% 24
+\BOOKMARK [1][-]{section.4}{AirBnb Price Estimator App}{}% 25
+\BOOKMARK [2][-]{subsection.4.1}{Introduction}{section.4}% 26
+\BOOKMARK [2][-]{subsection.4.2}{Functional Requirements}{section.4}% 27
+\BOOKMARK [2][-]{subsection.4.3}{Application Guide}{section.4}% 28

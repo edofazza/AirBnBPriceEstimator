@@ -8,16 +8,22 @@
 \contentsline {subsubsection}{\numberline {2.2.1}Removing Noisy and Irrelevant attributes}{4}{subsubsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.2}Removing Redundant Attributes}{4}{subsubsection.2.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.3}Additional Removed Features}{5}{subsubsection.2.2.3}%
-\contentsline {section}{\numberline {3}Classification}{6}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Strategies}{6}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Train and Test Splitting}{6}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Chosen Classifiers}{6}{subsubsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.2}Building Classification Models}{6}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Procedure}{6}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Implementation}{6}{subsubsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.3}Performance Evaluation and Effects od Attribute Selection}{6}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Conclusions}{6}{subsection.3.4}%
-\contentsline {section}{\numberline {4}AirBnb Price Estimator App}{7}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Introduction}{7}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Functional Requirements}{7}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Application Guide}{7}{subsection.4.3}%
+\contentsline {subsection}{\numberline {2.3}Hot Vector for the Amenities}{5}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Data Cleaning and Reduction in the Amenities' Hot Vector}{5}{subsubsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.4}Dealing with Mission Fields}{7}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Data Integration and Transformation}{7}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Attribute Formats Transformation}{7}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Dealing with lists}{7}{subsubsection.2.5.2}%
+\contentsline {section}{\numberline {3}Classification}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Strategies}{8}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Train and Test Splitting}{8}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Chosen Classifiers}{8}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Building Classification Models}{8}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Procedure}{8}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Implementation}{8}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Performance Evaluation and Effects od Attribute Selection}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Conclusions}{8}{subsection.3.4}%
+\contentsline {section}{\numberline {4}AirBnb Price Estimator App}{9}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Introduction}{9}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Functional Requirements}{9}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Application Guide}{9}{subsection.4.3}%

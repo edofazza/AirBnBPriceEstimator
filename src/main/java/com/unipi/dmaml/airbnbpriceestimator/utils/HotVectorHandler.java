@@ -54,9 +54,9 @@ public class HotVectorHandler {
             mergeColumnsThatContainSpecificWords(columnHashMap, "Oven", "oven");
             mergeColumnsThatContainSpecificWords(columnHashMap, "Garden", "garden");
             mergeColumnsThatContainSpecificWords(columnHashMap, "Heating", "heating");
+            mergeColumnsThatContainSpecificWords(columnHashMap, "Onsite restaurant", "restaurant");
             mergeColumnsThatContainSpecificWords(columnHashMap, "Kitchen", "kitchen", "kitchenette");
             mergeColumnsThatContainSpecificWords(columnHashMap, "Onsite bar", "bar");
-            mergeColumnsThatContainSpecificWords(columnHashMap, "Onsite restaurant", "restaurant");
             mergeColumnsThatContainSpecificWords(columnHashMap, "Pool", "pool");
             mergeColumnsThatContainSpecificWords(columnHashMap, "Washer", "washer");
             mergeColumnsThatContainSpecificWords(columnHashMap, "Hot water", "hot water", "hot tub");
