@@ -17,7 +17,6 @@ public class Preprocesser {
         Instances rawData = new RawDataLoader().loadRawFile();
 
         //TODO write attribute price into price.csv and remove column
-        //TODO write attribute amenities into amenities.csv and remove column
         //TODO write attribute bathrooms into bathrooms.csv and remove column
 
         //TODO new thread :{
