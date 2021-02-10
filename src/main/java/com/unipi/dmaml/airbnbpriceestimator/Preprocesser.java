@@ -1,5 +1,6 @@
 package com.unipi.dmaml.airbnbpriceestimator;
 
+import com.unipi.dmaml.airbnbpriceestimator.loaders.RawDataLoader;
 import com.unipi.dmaml.airbnbpriceestimator.utils.ColumnHandler;
 import com.unipi.dmaml.airbnbpriceestimator.utils.HotVectorGenerator;
 import weka.core.Instances;
@@ -11,31 +12,9 @@ import java.util.List;
 
 public class Preprocesser {
 
-    private static String csvFile="csv/airbnb_dataset10.csv";
     public static void main(String[] args) {
 
-        CSVLoader loader= new CSVLoader();
-        try {
-            loader.setBufferSize(100);
-            loader.setDateAttributes("1");
-            loader.setDateFormat("dd/MM/yyyy");
-            loader.setEnclosureCharacters("\"");
-            loader.setFieldSeparator(";");
-            loader.setMissingValue("?");
-            loader.setNominalAttributes("2,5,7,8,9,10,12,19,20");
-            loader.setNumericAttributes("3,4,6,11,13-18");
-            loader.setSource(new File(csvFile));
-            Instances data=loader.getDataSet();
-            for(int i=0; i<10; i++){
-                for(int j=0; j<data.numAttributes(); j++){
-                    System.out.println(data.instance(i).toString(j));
-                }
-                System.out.println("\n ---------------------------------------------- \n");
-            }
-
-        }catch (IOException ioe){
-            ioe.printStackTrace();
-        }
+        Instances rawData = new RawDataLoader().loadRawFile();
 
         //TODO write attribute price into price.csv and remove column
         //TODO write attribute amenities into amenities.csv and remove column
@@ -66,4 +45,5 @@ public class Preprocesser {
         //TODO delete all the files but the final one
 
     }
+
 }
