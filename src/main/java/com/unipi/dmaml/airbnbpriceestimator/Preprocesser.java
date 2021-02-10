@@ -1,18 +1,22 @@
 package com.unipi.dmaml.airbnbpriceestimator;
 
+import com.unipi.dmaml.airbnbpriceestimator.loaders.RawDataLoader;
 import com.unipi.dmaml.airbnbpriceestimator.utils.ColumnHandler;
 import com.unipi.dmaml.airbnbpriceestimator.utils.HotVectorGenerator;
+import weka.core.Instances;
+import weka.core.converters.CSVLoader;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class Preprocesser {
 
-    private static String csvFile="csv/airbnb_dataset_preprocessed";
     public static void main(String[] args) {
 
-        //TODO load csvFile
+        Instances rawData = new RawDataLoader().loadRawFile();
+
         //TODO write attribute price into price.csv and remove column
-        //TODO write attribute amenities into amenities.csv and remove column
         //TODO write attribute bathrooms into bathrooms.csv and remove column
 
         //TODO new thread :{
@@ -40,4 +44,5 @@ public class Preprocesser {
         //TODO delete all the files but the final one
 
     }
+
 }
