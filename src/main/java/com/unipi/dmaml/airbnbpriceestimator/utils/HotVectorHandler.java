@@ -129,7 +129,7 @@ public class HotVectorHandler {
                 }
             }
         }
-        System.out.println("HEADERS THAT WILL BE MERGED: " + String.join(", ", headersToMerge.toArray(new String[0])));
+        System.out.println(newHeader + "-> HEADERS MERGED: " + String.join(", ", headersToMerge.toArray(new String[0])));
 
         // TAKE THE VECTORS AND SUM THEM
         List<List<String>> vectors = new ArrayList<>();
