@@ -7,10 +7,10 @@
 \BOOKMARK [3][-]{subsubsection.2.2.1}{Removing Noisy and Irrelevant attributes}{subsection.2.2}% 7
 \BOOKMARK [3][-]{subsubsection.2.2.2}{Removing Redundant Attributes}{subsection.2.2}% 8
 \BOOKMARK [3][-]{subsubsection.2.2.3}{Additional Removed Features}{subsection.2.2}% 9
-\BOOKMARK [2][-]{subsection.2.3}{Dealing with Mission Fields}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.3}{Dealing with Missing Fields}{section.2}% 10
 \BOOKMARK [2][-]{subsection.2.4}{Data Transformation}{section.2}% 11
 \BOOKMARK [3][-]{subsubsection.2.4.1}{Attribute Formats Transformation}{subsection.2.4}% 12
-\BOOKMARK [3][-]{subsubsection.2.4.2}{Hot Vector for the Amenities}{subsection.2.4}% 13
+\BOOKMARK [3][-]{subsubsection.2.4.2}{One Hot for the Amenities}{subsection.2.4}% 13
 \BOOKMARK [3][-]{subsubsection.2.4.3}{Amenities' Hot Vector refinements}{subsection.2.4}% 14
 \BOOKMARK [1][-]{section.3}{Classification}{}% 15
 \BOOKMARK [2][-]{subsection.3.1}{Strategies}{section.3}% 16
