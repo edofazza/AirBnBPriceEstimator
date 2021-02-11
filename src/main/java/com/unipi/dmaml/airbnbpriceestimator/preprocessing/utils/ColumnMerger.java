@@ -95,8 +95,8 @@ public class ColumnMerger {
         columnMerger.createMergedCsv("csv/preprocessing/csvPreprocessed.csv",
                 "csv/airbnb_dataset10.csv",
                 "csv/bathroomsFormatted.csv",
-                "csv/priceFormatted.csv"
-                //"csv/preprocessing/amenitiesMerged.csv"
+                "csv/priceFormatted.csv",
+                "csv/preprocessing/amenitiesMerged.csv"
                 );
     }
 }
