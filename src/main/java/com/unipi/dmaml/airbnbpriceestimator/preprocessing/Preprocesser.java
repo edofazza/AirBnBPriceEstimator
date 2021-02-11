@@ -5,20 +5,26 @@ import com.unipi.dmaml.airbnbpriceestimator.preprocessing.utils.ColumnHandler;
 import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
+import weka.core.converters.CSVSaver;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Preprocesser {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
         Instances rawData = new RawDataLoader().loadRawFile();
-
+        CSVSaver c= new CSVSaver();
+        c.setInstances(rawData);
+        c.setFieldSeparator(";");
+        c.setDestination(new File("csv/prova.csv"));
+        /*
         writeIntoFile("csv/price.csv", rawData.attribute("price"), rawData);
         writeIntoFile("csv/bathrooms.csv", rawData.attribute("bathrooms_text"), rawData);
         Remove removePrice = new Remove();

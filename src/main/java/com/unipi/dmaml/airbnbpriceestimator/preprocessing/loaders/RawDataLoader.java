@@ -23,12 +23,6 @@ public class RawDataLoader {
             loader.setNumericAttributes("3,4,6,11,13-18");
             loader.setSource(new File(csvFile));
             data=loader.getDataSet();
-            for(int i=0; i<10; i++){
-                for(int j=0; j<data.numAttributes(); j++){
-                    System.out.println(data.instance(i).toString(j));
-                }
-                System.out.println("\n ---------------------------------------------- \n");
-            }
 
         }catch (IOException ioe){
             ioe.printStackTrace();
