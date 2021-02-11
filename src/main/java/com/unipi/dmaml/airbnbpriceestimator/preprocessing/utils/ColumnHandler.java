@@ -29,6 +29,8 @@ public class ColumnHandler {
                 String numberOfBath;
                 if (line.contains(".5"))
                     numberOfBath = line.substring(0, 3);
+                else if (line.startsWith("S"))
+                    numberOfBath = "1";
                 else
                     numberOfBath = line.substring(0, 1);
 
