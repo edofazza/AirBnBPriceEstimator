@@ -3,11 +3,19 @@ package com.unipi.dmaml.airbnbpriceestimator;
 import com.unipi.dmaml.airbnbpriceestimator.loaders.RawDataLoader;
 import com.unipi.dmaml.airbnbpriceestimator.utils.ColumnHandler;
 import com.unipi.dmaml.airbnbpriceestimator.utils.HotVectorGenerator;
+import weka.core.Attribute;
+import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.CSVLoader;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Remove;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class Preprocesser {
@@ -16,8 +24,21 @@ public class Preprocesser {
 
         Instances rawData = new RawDataLoader().loadRawFile();
 
-        //TODO write attribute price into price.csv and remove column
-        //TODO write attribute bathrooms into bathrooms.csv and remove column
+        writeIntoFile("csv/price.csv", rawData.attribute("price"), rawData);
+        writeIntoFile("csv/bathrooms.csv", rawData.attribute("bathrooms_text"), rawData);
+        Remove removePrice = new Remove();
+        removePrice.setAttributeIndices("last");
+        Remove removeBathrooms = new Remove();
+        removeBathrooms.setAttributeIndices("12");
+        try{
+            removePrice.setInputFormat(rawData);
+            Instances tempdata = Filter.useFilter(rawData, removePrice);
+            Instances newData = Filter.useFilter(tempdata, removeBathrooms);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
 
         //TODO new thread :{
         // for bedroom missing values, Weka filter ReplaceMissingValuesWithUserConstant(1)
@@ -42,6 +63,18 @@ public class Preprocesser {
 
         //TODO merge file into new completely preprocessed file
         //TODO delete all the files but the final one
+
+    }
+
+    private static void writeIntoFile(String path, Attribute column, Instances data){
+        try(BufferedWriter bf = Files.newBufferedWriter(Paths.get(path))){
+            bf.write(column.name()+"\n");
+            for(Instance i: data){
+                bf.write(i.stringValue(column)+"\n");
+            }
+        }catch(IOException ioe){
+            ioe.printStackTrace();
+        }
 
     }
 

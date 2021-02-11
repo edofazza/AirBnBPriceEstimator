@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class RawDataLoader {
-    private static String csvFile="csv/airbnb_dataset10.csv";
+    private static String csvFile="csv/airbnb_dataset10.csv"; //TODO change name of the file
 
     public Instances loadRawFile(){
         CSVLoader loader= new CSVLoader();
