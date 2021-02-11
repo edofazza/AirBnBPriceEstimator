@@ -13,7 +13,7 @@ public class ColumnHandler {
              BufferedReader br = new BufferedReader(new FileReader(path))
         ) {
             // FOR LINE FOR HEADERS
-            writer.write("numberOfBathrooms,shared\n");
+            writer.write("bathrooms,bathroomsShared\n");
 
             // GET EACH LINE AND CREATE THE NEW LINE FROM IT
             String line;
