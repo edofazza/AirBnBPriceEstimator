@@ -8,12 +8,11 @@
 \contentsline {subsubsection}{\numberline {2.2.1}Removing Noisy and Irrelevant attributes}{4}{subsubsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.2}Removing Redundant Attributes}{4}{subsubsection.2.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.3}Additional Removed Features}{5}{subsubsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.3}Hot Vector for the Amenities}{5}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Data Cleaning and Reduction in the Amenities' Hot Vector}{5}{subsubsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.4}Dealing with Mission Fields}{7}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Data Integration and Transformation}{7}{subsection.2.5}%
-\contentsline {subsubsection}{\numberline {2.5.1}Attribute Formats Transformation}{7}{subsubsection.2.5.1}%
-\contentsline {subsubsection}{\numberline {2.5.2}Dealing with lists}{7}{subsubsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.3}Dealing with Mission Fields}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Data Transformation}{5}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Attribute Formats Transformation}{5}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Hot Vector for the Amenities}{5}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Amenities' Hot Vector refinements}{6}{subsubsection.2.4.3}%
 \contentsline {section}{\numberline {3}Classification}{8}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Strategies}{8}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}Train and Test Splitting}{8}{subsubsection.3.1.1}%

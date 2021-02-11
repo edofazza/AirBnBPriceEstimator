@@ -39,9 +39,35 @@ Eventually, the other columns that have been discarded are:
 \end{enumerate}
 
 
-\subsection{Hot Vector for the Amenities}
+\subsection{Dealing with Missing Fields}
 
-\subsubsection{Data Cleaning and Reduction in the Amenities' Hot Vector}
+
+
+\subsection{Data Transformation}
+
+\subsubsection{Attribute Formats Transformation}
+Some of the attributes persisted after the cleaning and reduction phases of the precedent sections were in a not suitable for the knowledge discovery operation that will be done in chapter 3. Thus, we decide to transform those attribute to make them adequate for classification. The features we transformed are: \textit{amenities} (we will discuss them in chapter 2.4.2), \textit{bathrooms}, and \textit{price}.
+
+The \textit{bathrooms} in the scraped file were two columns, one empty and removed and the other one containing string values as "Shared bath", "1 shared bath", "1.5 bath". We manage to format it in two columns, one referring to the number of bathrooms inside the building and the other telling if the bathrooms are shared or not.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{img/bath.png}  
+\end{figure}
+
+The \textit{price} attribute in the original file was a string made of \textit{\$} plus the amount (e.g., \textit{\$170}). We transformed it simply by removing the dollar sign.
+
+\subsubsection{Hot Vector for the Amenities}
+\textit{Amenities}, in the original file, were list of string inputed by the used that contain all the facility the specific BnB offers to the guests.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/amenities.png}  
+\end{figure}
+
+\subsubsection{Amenities' Hot Vector refinements}
+Quelle che sono state eliminate
+
+
+Quelle che sono state mergiate
 
 \begin{itemize}
 	\item \textbf{Toiletries} \textrightarrow \textit{1802 Beekman toiletries, Diptyque toiletries, Gilchrist \& Soames toiletries, Malin+Goetz toiletries, Natura toiletries, Toiletries, Neil George toiletries, C.O. Bigelow toiletries,  comfort zone  toiletries, Appelles toiletries, Cote Bastide Argan toiletries, Bio Beauty toiletries, Le Labo toiletries, Elemis toiletries, MOR toiletries}
@@ -68,17 +94,6 @@ Eventually, the other columns that have been discarded are:
 	\item \textbf{Coffee machine} \textrightarrow \textit{Keurig coffee machine, Coffee maker, Nespresso machine, Pour Over Coffee}
 }
 \end{itemize}
-
-\subsection{Dealing with Mission Fields}
-
-
-
-\subsection{Data Integration and Transformation}
-
-\subsubsection{Attribute Formats Transformation}
-Aggiungere colonne modificate e screenshots
-
-\subsubsection{Dealing with lists}
 
 
 
