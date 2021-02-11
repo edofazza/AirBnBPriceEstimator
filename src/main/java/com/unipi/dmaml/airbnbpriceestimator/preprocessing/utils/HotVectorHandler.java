@@ -1,4 +1,4 @@
-package com.unipi.dmaml.airbnbpriceestimator.utils;
+package com.unipi.dmaml.airbnbpriceestimator.preprocessing.utils;
 
 import java.io.*;
 import java.nio.file.Files;

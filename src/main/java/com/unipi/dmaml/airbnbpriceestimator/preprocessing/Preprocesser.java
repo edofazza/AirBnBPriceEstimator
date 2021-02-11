@@ -1,22 +1,17 @@
-package com.unipi.dmaml.airbnbpriceestimator;
+package com.unipi.dmaml.airbnbpriceestimator.preprocessing;
 
-import com.unipi.dmaml.airbnbpriceestimator.loaders.RawDataLoader;
-import com.unipi.dmaml.airbnbpriceestimator.utils.ColumnHandler;
-import com.unipi.dmaml.airbnbpriceestimator.utils.HotVectorGenerator;
+import com.unipi.dmaml.airbnbpriceestimator.preprocessing.loaders.RawDataLoader;
+import com.unipi.dmaml.airbnbpriceestimator.preprocessing.utils.ColumnHandler;
 import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
-import weka.core.converters.CSVLoader;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
 
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 
 public class Preprocesser {
 

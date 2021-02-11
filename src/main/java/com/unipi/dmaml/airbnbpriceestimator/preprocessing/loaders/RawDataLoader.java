@@ -1,4 +1,4 @@
-package com.unipi.dmaml.airbnbpriceestimator.loaders;
+package com.unipi.dmaml.airbnbpriceestimator.preprocessing.loaders;
 
 import weka.core.Instances;
 import weka.core.converters.CSVLoader;
