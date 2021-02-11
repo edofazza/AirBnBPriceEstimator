@@ -1,6 +1,10 @@
 package com.unipi.dmaml.airbnbpriceestimator.preprocessing;
 
 import com.unipi.dmaml.airbnbpriceestimator.preprocessing.loaders.RawDataLoader;
+import com.unipi.dmaml.airbnbpriceestimator.preprocessing.tasks.BathroomCleaner;
+import com.unipi.dmaml.airbnbpriceestimator.preprocessing.tasks.ListToHotVectorHandler;
+import com.unipi.dmaml.airbnbpriceestimator.preprocessing.tasks.MissingValueFiller;
+import com.unipi.dmaml.airbnbpriceestimator.preprocessing.tasks.PriceCleaner;
 import com.unipi.dmaml.airbnbpriceestimator.preprocessing.utils.ColumnHandler;
 import weka.core.Attribute;
 import weka.core.Instance;
@@ -20,47 +24,30 @@ public class Preprocesser {
     public static void main(String[] args) throws Exception{
 
         Instances rawData = new RawDataLoader().loadRawFile();
-        CSVSaver c= new CSVSaver();
-        c.setInstances(rawData);
-        c.setFieldSeparator(";");
-        c.setDestination(new File("csv/prova.csv"));
-        /*
+
         writeIntoFile("csv/price.csv", rawData.attribute("price"), rawData);
         writeIntoFile("csv/bathrooms.csv", rawData.attribute("bathrooms_text"), rawData);
         Remove removePrice = new Remove();
         removePrice.setAttributeIndices("last");
         Remove removeBathrooms = new Remove();
         removeBathrooms.setAttributeIndices("12");
+        Instances newData=rawData;
         try{
             removePrice.setInputFormat(rawData);
             Instances tempdata = Filter.useFilter(rawData, removePrice);
-            Instances newData = Filter.useFilter(tempdata, removeBathrooms);
+            removeBathrooms.setInputFormat(tempdata);
+            newData = Filter.useFilter(tempdata, removeBathrooms);
         }catch (Exception e){
             e.printStackTrace();
         }
 
-
-
-        //TODO new thread :{
-        // for bedroom missing values, Weka filter ReplaceMissingValuesWithUserConstant(1)
-        // for ALL the other missing values, Weka filter ReplaceMissingValues (also for score rating)
-        // for time response, sortLabels+OrdinalToNumeric
-        //}
-
-        //TODO new HotVectorThread{
-        /*
-        HotVectorGenerator hotVectorGenerator = new HotVectorGenerator();
-        List<String> features = hotVectorGenerator.getAllFeatures("csv/amenities.csv");
-        hotVectorGenerator.sortHeaders(features);
-        hotVectorGenerator.createHotVectorCSV("csv/result.csv", "csv/amenities.csv", features);
-        */
-        //}
-
-        //TODO new ColumnHandlerThread (can be more than 1 if you want){
-        ColumnHandler columnHandler = new ColumnHandler();
-        //columnHandler.bathroomColumns("csv/bathrooms.csv", "csv/bathroomsFormatted.csv");
-        //columnHandler.removeDollarFromPrice("csv/price.csv", "csv/priceFormatted.csv");
-        //}
+        Thread t1 = new Thread(new MissingValueFiller(newData));
+        Thread t2 = new Thread(new PriceCleaner());
+        Thread t3 = new Thread(new BathroomCleaner());
+        Thread t4 = new Thread(new ListToHotVectorHandler());
+        t1.start(); t2.start(); t3.start(); t4.start();
+        t1.join(); t2.join(); t3.join(); t4.join();
+        System.out.println("Main thread waited everyone");
 
         //TODO merge file into new completely preprocessed file
         //TODO delete all the files but the final one
