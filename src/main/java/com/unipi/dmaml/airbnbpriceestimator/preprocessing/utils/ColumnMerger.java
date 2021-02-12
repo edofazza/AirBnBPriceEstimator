@@ -47,6 +47,7 @@ public class ColumnMerger {
             }
         }
 
+        columnHashMap.remove("amenities");
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(newFile), StandardOpenOption.APPEND)) {
             // PRINT CSV
             String[] clearedHeaders = columnHashMap.keySet().toArray(new String[0]);
