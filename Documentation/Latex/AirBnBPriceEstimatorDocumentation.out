@@ -12,16 +12,17 @@
 \BOOKMARK [3][-]{subsubsection.2.4.1}{Attribute Formats Transformation}{subsection.2.4}% 12
 \BOOKMARK [3][-]{subsubsection.2.4.2}{One Hot for the Amenities}{subsection.2.4}% 13
 \BOOKMARK [3][-]{subsubsection.2.4.3}{Amenities' Hot Vector refinements}{subsection.2.4}% 14
-\BOOKMARK [1][-]{section.3}{Classification}{}% 15
-\BOOKMARK [2][-]{subsection.3.1}{Strategies}{section.3}% 16
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Train and Test Splitting}{subsection.3.1}% 17
-\BOOKMARK [3][-]{subsubsection.3.1.2}{Chosen Classifiers}{subsection.3.1}% 18
-\BOOKMARK [2][-]{subsection.3.2}{Building Classification Models}{section.3}% 19
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Procedure}{subsection.3.2}% 20
-\BOOKMARK [3][-]{subsubsection.3.2.2}{Implementation}{subsection.3.2}% 21
-\BOOKMARK [2][-]{subsection.3.3}{Performance Evaluation and Effects od Attribute Selection}{section.3}% 22
-\BOOKMARK [2][-]{subsection.3.4}{Conclusions}{section.3}% 23
-\BOOKMARK [1][-]{section.4}{AirBnb Price Estimator App}{}% 24
-\BOOKMARK [2][-]{subsection.4.1}{Introduction}{section.4}% 25
-\BOOKMARK [2][-]{subsection.4.2}{Functional Requirements}{section.4}% 26
-\BOOKMARK [2][-]{subsection.4.3}{Application Guide}{section.4}% 27
+\BOOKMARK [2][-]{subsection.2.5}{Preprocessing Implementation}{section.2}% 15
+\BOOKMARK [1][-]{section.3}{Classification}{}% 16
+\BOOKMARK [2][-]{subsection.3.1}{Strategies}{section.3}% 17
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Train and Test Splitting}{subsection.3.1}% 18
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Chosen Classifiers}{subsection.3.1}% 19
+\BOOKMARK [2][-]{subsection.3.2}{Building Classification Models}{section.3}% 20
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Procedure}{subsection.3.2}% 21
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Implementation}{subsection.3.2}% 22
+\BOOKMARK [2][-]{subsection.3.3}{Performance Evaluation and Effects od Attribute Selection}{section.3}% 23
+\BOOKMARK [2][-]{subsection.3.4}{Conclusions}{section.3}% 24
+\BOOKMARK [1][-]{section.4}{AirBnb Price Estimator App}{}% 25
+\BOOKMARK [2][-]{subsection.4.1}{Introduction}{section.4}% 26
+\BOOKMARK [2][-]{subsection.4.2}{Functional Requirements}{section.4}% 27
+\BOOKMARK [2][-]{subsection.4.3}{Application Guide}{section.4}% 28

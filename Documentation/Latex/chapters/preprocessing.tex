@@ -21,7 +21,7 @@ The first preprocessing operation is the attribute reduction, indeed we decided 
 The next step was the reduction of attributes explicitly redundant. For all of these we did not compute the $\chi^2$ test because of the explicit correlation between the features
 
 \begin{itemize}
-	\item \textit{host\_neighbourhood and neighbourhood} \textbf{w.r.t.} the couple \textit{neighbourhood\_cleansed, neighbourhood\_group\_cleansed}
+	\item \textit{host\_neighbourhood and neighbourhood} \textbf{w.r.t.} \textit{neighbourhood\_cleansed} are explicit redundancies; 	\textit{neighbourhood\_group\_cleansed} has been demonstrated to be very highly correlated with \textit{neighbourhood\_cleansed} ($P\{independence\}<0.05$)
 	\item \textit{host\_total\_listings\_count} completely equal to \textit{host\_listing\_count}
 	\item \textit{host verification} \textbf{w.r.t.} \textit{host\_identity\_verified}
 	\item \textit{minimum\_minimum\_nights, minimum\_maximum\_nights, maximum\_minimum\_night, maximum\_maximum\_nights, minimum\_nights\_avg} and \textit{maximum\_nights\_avg} are redundancies of the \textit{attributes minimum\_nights} and \textit{maximum\_nights}
@@ -40,8 +40,14 @@ Eventually, the other columns that have been discarded are:
 
 
 \subsection{Dealing with Missing Fields}
+Once the previous steps were performed, we achieved a \textbf{Weka-convertible CSV file}. Thus, the following steps have been implemented using the \textit{Java Weka API}.
+The original dataset contains several missing values sparse in more than one attribute. The number of missing values is enough relevant to discourage the instance deletion, although they are pretty easy to handle, indeed:
 
-
+\begin{itemize}
+	\item The majority of them are on numeric attributes characterized by low variance, like the \textit{response\_rate} ($\sigma =26.17$ on a $0-100$ interval) or the \textit{review\_score\_rating} ($\sigma=9.52$ on a $0-100$ interval). In these cases, replacing the missing value with the mean does not introduces big error rates.
+	\item Some missing values can be easily inferred with the simple analysis by the domain expert: for example, the attribute \textit{bedrooms} contains missing values, but only when the corresponding \textit{beds} value is 1: it’s reasonable that the missing value for \textit{bedrooms} is 1 as well.
+	\item Supervised approaches for missing values could have guaranteed more precise results, but since we are exploiting a regression problem and we didn’t split training and test sets yet, using a supervised filter here was an error.
+\end{itemize}
 
 \subsection{Data Transformation}
 
@@ -118,4 +124,16 @@ The merged columns were (\textit{new name for the column} \textrightarrow \texti
 
 
 
+\subsection{Preprocessing Implementation}
+As already mentioned before, the preliminary operations needed to make the \textit{csv} readable by \textbf{Weka} have been performed using spreadsheet software. The resulting cleansed file still needs some modifications, \textit{i.e.}:
 
+\begin{itemize}
+	\item As reported in par. 2.3, missing values need to be managed
+	\item As widely discussed in par. 2.4, the \textit{amenities} must be converted in a \textbf{One Hot}
+	\item On the \textit{price} attribute, we get rid of the \$ sign and we convert it into numeric
+	\item The \textit{bathroom} attribute needs its format to be changed
+\end{itemize}
+
+After the loading of the \textit{CSV} file, in order to speed up the operations we parallelized them using 4 different threads: the dataset is vertically split and every thread works only on its related partition, using \textit{Java Weka API} or working directly on the text according to what was the fastest approach in every single scenario; every execution flow, before ending, writes results in a \textit{CSV} file. The main thread spawns a thread for each of the tasks listed before, and then waits the termination of all of them before merging the results in a single file.
+
+In addition to the benefits of parallelism, this approach promotes the separation of concerns of the tasks: the main method defines the preprocessing pipeline, but the actual operations on data are performed by separated and independent components. All the classes implemented at this point are collected in the \textit{com.unipi.dmaml.airbnbpriceestimator.preprocessing} package.
