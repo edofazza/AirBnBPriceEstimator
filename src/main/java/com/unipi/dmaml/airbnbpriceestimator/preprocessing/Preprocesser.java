@@ -61,6 +61,7 @@ public class Preprocesser {
         deleteFile("csv/priceFormatted.csv");
         deleteFile("csv/result.csv");
         deleteFile("csv/preprocessing/amenitiesMerged.csv");
+        deleteFile("airbnb_dataset_preprocessed.csv");
     }
 
     private static void deleteFile(String path) {
