@@ -72,8 +72,9 @@ public class HotVectorHandler {
             mergeColumnsThatContainSpecificWords(columnHashMap, "Netflix", "netflix");
             mergeColumnsThatContainSpecificWords(columnHashMap, "Premium cable", "premium cable");
             mergeColumnsThatContainSpecificWords(columnHashMap, "TV", "TV", "standard cable");
-            mergeColumnsThatContainSpecificWords(columnHashMap, "Dinnerware", "dinnerware", "dishes", "cooking basics");
+            mergeColumnsThatContainSpecificWords(columnHashMap, "Dinnerware", "dinnerware", "dishes", "cooking basics", "wine glasses");
             mergeColumnsThatContainSpecificWords(columnHashMap, "Crib", "crib");
+            mergeColumnsThatContainSpecificWords(columnHashMap, "Clothing storage", "clothing storage");
 
             // PRINT CSV
             String[] clearedHeaders = columnHashMap.keySet().toArray(new String[0]);
@@ -129,7 +130,7 @@ public class HotVectorHandler {
                 }
             }
         }
-        System.out.println(newHeader + "-> HEADERS MERGED: " + String.join(", ", headersToMerge.toArray(new String[0])));
+        //System.out.println(newHeader + "-> HEADERS MERGED: " + String.join(", ", headersToMerge.toArray(new String[0])));
 
         // TAKE THE VECTORS AND SUM THEM
         List<List<String>> vectors = new ArrayList<>();

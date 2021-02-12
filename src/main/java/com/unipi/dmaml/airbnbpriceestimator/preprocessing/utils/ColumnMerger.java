@@ -13,7 +13,6 @@ public class ColumnMerger {
         Map<String, List<String>> columnHashMap = new HashMap<>();
 
         for (String csv: csvPaths) {
-            System.out.println(csv);
             try (
                  BufferedReader br = new BufferedReader(new FileReader(csv))
             ) {
@@ -28,7 +27,7 @@ public class ColumnMerger {
                 for (String header: headers) {
                     String[] tmpHeaders = columnHashMap.keySet().toArray(new String[0]);
                     for (String s: tmpHeaders)
-                        if (s.toLowerCase(Locale.ROOT).contains(header.toLowerCase(Locale.ROOT)))
+                        if (s.toLowerCase(Locale.ROOT).equals(header.toLowerCase(Locale.ROOT)))
                             columnHashMap.remove(s);
                     columnHashMap.put(header, new ArrayList<>());
                 }
@@ -41,11 +40,11 @@ public class ColumnMerger {
                     // INSERT THE VALUES
                     for (int i = 0; i < headers.length; i++)
                         columnHashMap.get(headers[i]).add(values[i]);
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println(columnHashMap.size());
         }
 
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(newFile), StandardOpenOption.APPEND)) {
@@ -93,7 +92,7 @@ public class ColumnMerger {
     public static void main(String[] args) {
         ColumnMerger columnMerger = new ColumnMerger();
         columnMerger.createMergedCsv("csv/preprocessing/csvPreprocessed.csv",
-                "csv/airbnb_dataset10.csv",
+                "csv/airbnb_dataset_preprocessed.csv",
                 "csv/bathroomsFormatted.csv",
                 "csv/priceFormatted.csv",
                 "csv/preprocessing/amenitiesMerged.csv"

@@ -51,6 +51,7 @@ public class HotVectorGenerator {
 
             // GET EACH LINE AND CREATE THE NEW LINE FROM IT
             String line;
+            line = br.readLine();   // FIRST LINE NOT DATA
             while((line = br.readLine())!=null) {
                 // remove not useful chars
                 line = line.replace("\"", "");
