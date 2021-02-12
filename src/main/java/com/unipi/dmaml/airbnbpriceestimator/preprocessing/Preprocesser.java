@@ -1,25 +1,14 @@
 package com.unipi.dmaml.airbnbpriceestimator.preprocessing;
 
 import com.unipi.dmaml.airbnbpriceestimator.preprocessing.loaders.RawDataLoader;
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.tasks.BathroomCleaner;
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.tasks.ListToHotVectorHandler;
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.tasks.MissingValueFiller;
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.tasks.PriceCleaner;
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.utils.ColumnHandler;
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.utils.ColumnMerger;
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.utils.HotVectorHandler;
-import weka.core.Attribute;
-import weka.core.Instance;
-import weka.core.Instances;
-import weka.core.converters.CSVSaver;
+import com.unipi.dmaml.airbnbpriceestimator.preprocessing.tasks.*;
+import com.unipi.dmaml.airbnbpriceestimator.preprocessing.utils.*;
+import weka.core.*;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.*;
+import java.nio.file.*;
 import java.util.Locale;
 
 public class Preprocesser {

@@ -25,7 +25,7 @@ public class MissingValueFiller implements Runnable {
         ReplaceMissingValues missing = new ReplaceMissingValues();
         SortLabels responseTimeSorter = new SortLabels();
         OrdinalToNumeric numericResponseTime = new OrdinalToNumeric();
-        defaultValue.setAttributes("13");
+        defaultValue.setAttributes("12");
         defaultValue.setNumericReplacementValue("1");
         responseTimeSorter.setAttributeIndices("2");
         numericResponseTime.setAttributesToOperateOn("2");
