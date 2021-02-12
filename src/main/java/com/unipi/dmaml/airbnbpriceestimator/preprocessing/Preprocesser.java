@@ -65,13 +65,13 @@ public class Preprocesser {
                 "csv/preprocessing/amenitiesMerged.csv"
         );
 
-        /*
-        deleteFile("bathrooms.csv");
-        deleteFile("bathroomsFormatted.csv");
-        deleteFile("price.csv");
-        deleteFile("priceFormatted.csv");
-        deleteFile("result.csv");
-        deleteFile("preprocessing/amenitiesMerged.csv");*/
+        // DELETE TMP FILES
+        deleteFile("csv/bathrooms.csv");
+        deleteFile("csv/bathroomsFormatted.csv");
+        deleteFile("csv/price.csv");
+        deleteFile("csv/priceFormatted.csv");
+        deleteFile("csv/result.csv");
+        deleteFile("csv/preprocessing/amenitiesMerged.csv");
     }
 
     private static void deleteFile(String path) {
