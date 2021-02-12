@@ -21,7 +21,7 @@ public class ColumnHandler {
             while((line = br.readLine())!=null) {
                 // IF EMPTY = ? THEN BOTH OF THE COLUMNS WILL BE EMPTY = ?
                 if (line.equals("?")) {
-                    writer.write("?,?\n");
+                    writer.write("1,0\n");
                     continue;
                 }
 
