@@ -31,7 +31,7 @@ public class ColumnHandler {
                     numberOfBath = line.substring(0, 3);
                 else if (line.startsWith("S"))
                     numberOfBath = "1";
-                else if (line.startsWith("H"))
+                else if (line.startsWith("H") || line.contains("half"))
                     numberOfBath = "0.5";
                 else
                     numberOfBath = line.substring(0, 1);
