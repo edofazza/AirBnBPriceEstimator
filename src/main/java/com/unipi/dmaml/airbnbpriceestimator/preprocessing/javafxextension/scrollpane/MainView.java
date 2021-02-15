@@ -21,14 +21,14 @@ public class MainView extends ScrollPane {
 
         for (int i = 0; i < 5; i++) {
             TextField genericTextField1 = new OnlyCharactersTextField(50, 50, "Pippo");
-            TextField genericTextField2 = new OnlyDecimalsTextField(350, 50, "Meow");
-            HorizontalPaneWithTextFields horizontalPane = new HorizontalPaneWithTextFields(width, genericTextField1, genericTextField2);
+            TextField genericTextField2 = new OnlyDecimalsTextField(300, 50, "Meow");
+            HorizontalPaneWithTextFields horizontalPane = new HorizontalPaneWithTextFields(width -10, genericTextField1, genericTextField2);
             vBox.getChildren().add(horizontalPane);
         }
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
             RadioButtonForAmenity radioButtonForAmenity1 = new RadioButtonForAmenity(50, 50, "Amenity1");
-            RadioButtonForAmenity radioButtonForAmenity2 = new RadioButtonForAmenity(350, 50, "Amenity2");
-            HorizontalPaneWithRadioButtons horizontalPane = new HorizontalPaneWithRadioButtons(width, radioButtonForAmenity1, radioButtonForAmenity2);
+            RadioButtonForAmenity radioButtonForAmenity2 = new RadioButtonForAmenity(300, 50, "Amenity2");
+            HorizontalPaneWithRadioButtons horizontalPane = new HorizontalPaneWithRadioButtons(width - 10, radioButtonForAmenity1, radioButtonForAmenity2);
             vBox.getChildren().add(horizontalPane);
         }
 
