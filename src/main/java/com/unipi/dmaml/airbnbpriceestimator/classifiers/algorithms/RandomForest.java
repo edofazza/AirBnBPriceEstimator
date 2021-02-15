@@ -5,13 +5,13 @@ import weka.attributeSelection.BestFirst;
 import weka.attributeSelection.CfsSubsetEval;
 import weka.attributeSelection.GreedyStepwise;
 import weka.classifiers.Evaluation;
-import weka.classifiers.meta.AttributeSelectedClassifier;
 import weka.core.Attribute;
 import weka.core.Instances;
 import weka.filters.Filter;
 import weka.filters.supervised.attribute.AttributeSelection;
 
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Random;
 
 public class RandomForest {
@@ -71,12 +71,13 @@ public class RandomForest {
     private void executeCV(Instances dataset, int currentFold, AttributeSelection filter, String filterName) throws Exception {
         Instances train = dataset.trainCV(numFolds, currentFold);
         Instances test = dataset.testCV(numFolds, currentFold);
-        Enumeration<Attribute> chosen=null;
+        List<Attribute> chosen=null;
         if(filter!=null) {
             filter.setInputFormat(train);
             train = Filter.useFilter(train, filter);
             test = Filter.useFilter(test, filter);
-            chosen = train.enumerateAttributes();
+            for(int i=0; i<train.numAttributes(); i++)
+                chosen.add(train.attribute(i));
         }
         weka.classifiers.trees.RandomForest classifier = new weka.classifiers.trees.RandomForest();
         classifier.buildClassifier(train);
