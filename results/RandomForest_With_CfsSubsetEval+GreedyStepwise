@@ -1,9 +1,0 @@
-Results of RandomForest_With_CfsSubsetEval+GreedyStepwise
-
-
-Correlation coefficient                  0.6984
-Mean absolute error                     37.9918
-Root mean squared error                 56.5933
-Relative absolute error                 63.5223 %
-Root relative squared error             71.7935 %
-Total Number of Instances            35820     

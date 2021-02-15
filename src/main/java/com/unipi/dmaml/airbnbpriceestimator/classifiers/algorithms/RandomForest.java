@@ -1,14 +1,22 @@
 package com.unipi.dmaml.airbnbpriceestimator.classifiers.algorithms;
 
 import com.unipi.dmaml.airbnbpriceestimator.classifiers.saver.FileSaver;
+import weka.attributeSelection.BestFirst;
+import weka.attributeSelection.CfsSubsetEval;
+import weka.attributeSelection.GreedyStepwise;
 import weka.classifiers.Evaluation;
 import weka.classifiers.meta.AttributeSelectedClassifier;
+import weka.core.Attribute;
 import weka.core.Instances;
+import weka.filters.Filter;
+import weka.filters.supervised.attribute.AttributeSelection;
 
+import java.util.Enumeration;
 import java.util.Random;
 
 public class RandomForest {
     private Instances dataset;
+    private final int numFolds=10;
 
     public RandomForest(Instances dataset){
         this.dataset=dataset;
@@ -21,39 +29,59 @@ public class RandomForest {
 
     private void buildRandomForest(){
         try {
-            weka.classifiers.trees.RandomForest classifier = new weka.classifiers.trees.RandomForest();
-            Evaluation evaluation = new Evaluation(dataset);
-            evaluation.crossValidateModel(classifier, dataset, 10, new Random(1));
-            new FileSaver(evaluation, "RandomForest", null).save();
-            System.out.println("random forest terminated");
+            Instances randData = new Instances(dataset);
+            randData.randomize(new Random(1));
+
+            for(int i=0; i<numFolds; i++){
+                executeCV(randData, i, null, null);
+            }
+            System.out.println("linear regression terminated");
         }catch (Exception e){e.printStackTrace();}
     }
 
     private void buildRandomForestWithAttributeSelection(){
         try{
-            AttributeSelectedClassifier classifier1 = new AttributeSelectedClassifier();
-            String[] options1 = new String[6];
-            options1[0]="-E"; options1[1]="weka.attributeSelection.CfsSubsetEval -P 1 -E 1"; //attribute evaluator
-            options1[2]="-S"; options1[3]="weka.attributeSelection.BestFirst -D 2 -N 5"; //search algorithm = best first bidirectional
-            options1[4]="-W"; options1[5]="weka.classifiers.trees.RandomForest"; //classification algorithm
-            classifier1.setOptions(options1);
-            Evaluation evaluation1 = new Evaluation(dataset);
-            evaluation1.crossValidateModel(classifier1, dataset, 10, new Random(1));
-            new FileSaver(evaluation1, "RandomForest", "CfsSubsetEval+BestFirst").save();
-            System.out.println("random forest terminated");
+            Instances randData = new Instances(dataset);
+            randData.randomize(new Random(1));
 
-            AttributeSelectedClassifier classifier2 = new AttributeSelectedClassifier();
-            String[] options2 = new String[6];
-            options2[0]="-E"; options2[1]="weka.attributeSelection.CfsSubsetEval -P 1 -E 1"; //attribute evaluator
-            options2[2]="-S"; options2[3]="weka.attributeSelection.GreedyStepwise -T -1.7976931348623157E308 -N -1 -num-slots 1"; //search algorithm
-            options2[4]="-W"; options2[5]="weka.classifiers.trees.RandomForest"; //classification algorithm
-            classifier2.setOptions(options2);
-            Evaluation evaluation2 = new Evaluation(dataset);
-            evaluation2.crossValidateModel(classifier2, dataset, 10, new Random(1));
-            new FileSaver(evaluation2, "RandomForest", "CfsSubsetEval+GreedyStepwise").save();
-            System.out.println("random forest terminated");
+            for(int i=0; i<numFolds; i++){
+                AttributeSelection filter = new AttributeSelection();
+                filter.setEvaluator(new CfsSubsetEval());
+                filter.setSearch(new BestFirst());
+                executeCV(randData, i, filter, "CfsSubsetEval+BestFirst");
+            }
+
+            randData = new Instances(dataset);
+            randData.randomize(new Random(1));
+
+            for(int i=0; i<numFolds; i++){
+                AttributeSelection filter = new AttributeSelection();
+                filter.setEvaluator(new CfsSubsetEval());
+                filter.setSearch(new GreedyStepwise());
+                executeCV(randData, i, filter, "CfsSubsetEval+GreedyStepwise");
+            }
+
+            System.out.println("linear regression with attribute selection terminated");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void executeCV(Instances dataset, int currentFold, AttributeSelection filter, String filterName) throws Exception {
+        Instances train = dataset.trainCV(numFolds, currentFold);
+        Instances test = dataset.testCV(numFolds, currentFold);
+        Enumeration<Attribute> chosen=null;
+        if(filter!=null) {
+            filter.setInputFormat(train);
+            train = Filter.useFilter(train, filter);
+            test = Filter.useFilter(test, filter);
+            chosen = train.enumerateAttributes();
+        }
+        weka.classifiers.trees.RandomForest classifier = new weka.classifiers.trees.RandomForest();
+        classifier.buildClassifier(train);
+        Evaluation evaluation = new Evaluation(train);
+        evaluation.evaluateModel(classifier, test);
+        new FileSaver(evaluation, "RandomForest", filterName, currentFold, chosen).save();
     }
 }
