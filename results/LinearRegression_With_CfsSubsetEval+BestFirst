@@ -1,9 +1,9 @@
 Results of LinearRegression_With_CfsSubsetEval+BestFirst
 
 
-Correlation coefficient                  0.3736
-Mean absolute error                     72.4349
-Root mean squared error                248.9737
-Relative absolute error                 77.1031 %
-Root relative squared error             92.7644 %
-Total Number of Instances            36923     
+Correlation coefficient                  0.6793
+Mean absolute error                     40.0307
+Root mean squared error                 57.8518
+Relative absolute error                 66.9314 %
+Root relative squared error             73.3902 %
+Total Number of Instances            35820     
