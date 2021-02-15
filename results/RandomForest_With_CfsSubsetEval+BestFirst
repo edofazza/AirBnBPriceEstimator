@@ -1,0 +1,9 @@
+Results of RandomForest_With_CfsSubsetEval+BestFirst
+
+
+Correlation coefficient                  0.6988
+Mean absolute error                     37.9739
+Root mean squared error                 56.5643
+Relative absolute error                 63.4923 %
+Root relative squared error             71.7568 %
+Total Number of Instances            35820     
