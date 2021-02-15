@@ -1,0 +1,266 @@
+Results of LinearRegression_With_CfsSubsetEval+BestFirst	fold n.0
+
+
+Correlation coefficient                  0.6782
+Mean absolute error                     40.4962
+Root mean squared error                 59.3609
+Relative absolute error                 66.6701 %
+Root relative squared error             73.5745 %
+Total Number of Instances             3582     
+
+ Selected Features:
+Bluetooth_speaker : 0
+Concierge : 1
+Game_room : 2
+Gym : 3
+Indoor_fireplace : 4
+Premium_cable : 5
+bathroomsShared : 6
+bedrooms : 7
+host_response_rate : 8
+neighbourhood_cleansed : 9
+room_type : 10
+price : 11
+Results of LinearRegression_With_CfsSubsetEval+BestFirst	fold n.1
+
+
+Correlation coefficient                  0.667 
+Mean absolute error                     39.8483
+Root mean squared error                 57.1251
+Relative absolute error                 67.7717 %
+Root relative squared error             74.5863 %
+Total Number of Instances             3582     
+
+ Selected Features:
+Bathrobes : 0
+Bluetooth_speaker : 1
+Game_room : 2
+Gym : 3
+Indoor_fireplace : 4
+Premium_cable : 5
+Slippers : 6
+Turndown_service : 7
+bathroomsShared : 8
+bedrooms : 9
+host_response_rate : 10
+neighbourhood_cleansed : 11
+room_type : 12
+price : 13
+Results of LinearRegression_With_CfsSubsetEval+BestFirst	fold n.2
+
+
+Correlation coefficient                  0.6461
+Mean absolute error                     41.097 
+Root mean squared error                 59.3369
+Relative absolute error                 69.8478 %
+Root relative squared error             76.6608 %
+Total Number of Instances             3582     
+
+ Selected Features:
+Bathrobes : 0
+Bluetooth_speaker : 1
+Concierge : 2
+Game_room : 3
+Gym : 4
+Indoor_fireplace : 5
+Premium_cable : 6
+Slippers : 7
+bathroomsShared : 8
+bedrooms : 9
+host_response_rate : 10
+neighbourhood_cleansed : 11
+room_type : 12
+price : 13
+Results of LinearRegression_With_CfsSubsetEval+BestFirst	fold n.3
+
+
+Correlation coefficient                  0.6605
+Mean absolute error                     40.7985
+Root mean squared error                 60.07  
+Relative absolute error                 67.7621 %
+Root relative squared error             75.0952 %
+Total Number of Instances             3582     
+
+ Selected Features:
+Bathrobes : 0
+Bluetooth_speaker : 1
+Game_room : 2
+Gym : 3
+Indoor_fireplace : 4
+Premium_cable : 5
+Slippers : 6
+Turndown_service : 7
+bathroomsShared : 8
+bedrooms : 9
+host_response_rate : 10
+neighbourhood_cleansed : 11
+room_type : 12
+price : 13
+Results of LinearRegression_With_CfsSubsetEval+BestFirst	fold n.4
+
+
+Correlation coefficient                  0.6781
+Mean absolute error                     39.6839
+Root mean squared error                 56.9827
+Relative absolute error                 67.0828 %
+Root relative squared error             73.4972 %
+Total Number of Instances             3582     
+
+ Selected Features:
+Bathrobes : 0
+Game_room : 1
+Gym : 2
+Indoor_fireplace : 3
+Laundry_services : 4
+Premium_cable : 5
+Slippers : 6
+bathroomsShared : 7
+bedrooms : 8
+host_response_rate : 9
+neighbourhood_cleansed : 10
+room_type : 11
+price : 12
+Results of LinearRegression_With_CfsSubsetEval+BestFirst	fold n.5
+
+
+Correlation coefficient                  0.6815
+Mean absolute error                     39.7029
+Root mean squared error                 56.8163
+Relative absolute error                 67.1303 %
+Root relative squared error             73.2138 %
+Total Number of Instances             3582     
+
+ Selected Features:
+Bathrobes : 0
+Game_room : 1
+Gym : 2
+Indoor_fireplace : 3
+Laundry_services : 4
+Premium_cable : 5
+Slippers : 6
+Toaster : 7
+bathroomsShared : 8
+bedrooms : 9
+host_response_rate : 10
+neighbourhood_cleansed : 11
+room_type : 12
+price : 13
+Results of LinearRegression_With_CfsSubsetEval+BestFirst	fold n.6
+
+
+Correlation coefficient                  0.6776
+Mean absolute error                     41.4791
+Root mean squared error                 59.2259
+Relative absolute error                 67.4164 %
+Root relative squared error             73.5495 %
+Total Number of Instances             3582     
+
+ Selected Features:
+Bathrobes : 0
+Bidet : 1
+Chromecast : 2
+Gym : 3
+Indoor_fireplace : 4
+Premium_cable : 5
+Slippers : 6
+Turndown_service : 7
+bathroomsShared : 8
+bedrooms : 9
+host_response_rate : 10
+neighbourhood_cleansed : 11
+room_type : 12
+price : 13
+Results of LinearRegression_With_CfsSubsetEval+BestFirst	fold n.7
+
+
+Correlation coefficient                  0.7015
+Mean absolute error                     38.4339
+Root mean squared error                 56.3103
+Relative absolute error                 64.9564 %
+Root relative squared error             71.266  %
+Total Number of Instances             3582     
+
+ Selected Features:
+Baby_monitor : 0
+Bathrobes : 1
+Bidet : 2
+Bluetooth_speaker : 3
+Concierge : 4
+Elevator : 5
+Game_room : 6
+Gym : 7
+Indoor_fireplace : 8
+Laundry_services : 9
+Lock_on_bedroom_door : 10
+Pool : 11
+Premium_cable : 12
+Rice_maker : 13
+Turndown_service : 14
+accommodates : 15
+bathroomsShared : 16
+bedrooms : 17
+host_response_rate : 18
+neighbourhood_cleansed : 19
+property_type : 20
+room_type : 21
+price : 22
+Results of LinearRegression_With_CfsSubsetEval+BestFirst	fold n.8
+
+
+Correlation coefficient                  0.7149
+Mean absolute error                     38.6075
+Root mean squared error                 55.7136
+Relative absolute error                 63.915  %
+Root relative squared error             69.9152 %
+Total Number of Instances             3582     
+
+ Selected Features:
+Bathrobes : 0
+Bluetooth_speaker : 1
+Concierge : 2
+Elevator : 3
+Game_room : 4
+Gym : 5
+HBO_Max : 6
+Indoor_fireplace : 7
+Laundry_services : 8
+Lock_on_bedroom_door : 9
+Pool : 10
+Premium_cable : 11
+Ski-in/Ski-out : 12
+Slippers : 13
+Table_corner_guards : 14
+Turndown_service : 15
+accommodates : 16
+bathroomsShared : 17
+bedrooms : 18
+host_response_rate : 19
+neighbourhood_cleansed : 20
+property_type : 21
+room_type : 22
+price : 23
+Results of LinearRegression_With_CfsSubsetEval+BestFirst	fold n.9
+
+
+Correlation coefficient                  0.6877
+Mean absolute error                     40.1755
+Root mean squared error                 57.4574
+Relative absolute error                 66.8467 %
+Root relative squared error             72.6079 %
+Total Number of Instances             3582     
+
+ Selected Features:
+Bathrobes : 0
+Bluetooth_speaker : 1
+Game_room : 2
+Gym : 3
+Indoor_fireplace : 4
+Premium_cable : 5
+Slippers : 6
+Turndown_service : 7
+bathroomsShared : 8
+bedrooms : 9
+host_response_rate : 10
+neighbourhood_cleansed : 11
+room_type : 12
+price : 13
