@@ -35,19 +35,29 @@ public class LinearRegression {
 
     private void buildLinearRegressionWithAttributeSelection(){
         try{
-            AttributeSelectedClassifier classifier = new AttributeSelectedClassifier();
-            String[] options = new String[6];
-            options[0]="-E"; options[1]="weka.attributeSelection.CfsSubsetEval -P 1 -E 1"; //attribute evaluator
-            options[2]="-S"; options[3]="weka.attributeSelection.BestFirst -D 2 -N 5"; //search algorithm
-            options[4]="-W"; options[5]="weka.classifiers.functions.LinearRegression"; //classification algorithm
-            classifier.setOptions(options);
-            Evaluation evaluation = new Evaluation(dataset);
-            evaluation.crossValidateModel(classifier, dataset, 10, new Random(1));
-            new FileSaver(evaluation, "LinearRegression", "CfsSubsetEval+BestFirst").save();
+            AttributeSelectedClassifier classifier1 = new AttributeSelectedClassifier();
+            String[] options1 = new String[6];
+            options1[0]="-E"; options1[1]="weka.attributeSelection.CfsSubsetEval -P 1 -E 1"; //attribute evaluator
+            options1[2]="-S"; options1[3]="weka.attributeSelection.BestFirst -D 2 -N 5"; //search algorithm
+            options1[4]="-W"; options1[5]="weka.classifiers.functions.LinearRegression"; //classification algorithm
+            classifier1.setOptions(options1);
+            Evaluation evaluation1 = new Evaluation(dataset);
+            evaluation1.crossValidateModel(classifier1, dataset, 10, new Random(1));
+            new FileSaver(evaluation1, "LinearRegression", "CfsSubsetEval+BestFirst").save();
+
+
+            AttributeSelectedClassifier classifier2 = new AttributeSelectedClassifier();
+            String[] options2 = new String[6];
+            options2[0]="-E"; options2[1]="weka.attributeSelection.CfsSubsetEval -P 1 -E 1"; //attribute evaluator
+            options2[2]="-S"; options2[3]="weka.attributeSelection.GreedyStepwise -T -1.7976931348623157E308 -N -1 -num-slots 1"; //search algorithm
+            options2[4]="-W"; options2[5]="weka.classifiers.functions.LinearRegression"; //classification algorithm
+            classifier2.setOptions(options2);
+            Evaluation evaluation2 = new Evaluation(dataset);
+            evaluation2.crossValidateModel(classifier2, dataset, 10, new Random(1));
+            new FileSaver(evaluation2, "LinearRegression", "CfsSubsetEval+GreedyStepwise").save();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 }
