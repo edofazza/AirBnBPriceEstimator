@@ -1,4 +1,4 @@
-Results of LinearRegression_With_CfsSubsetEval+BestFirst
+Results of LinearRegression_With_CfsSubsetEval+GreedyStepwise
 
 
 Correlation coefficient                  0.6793

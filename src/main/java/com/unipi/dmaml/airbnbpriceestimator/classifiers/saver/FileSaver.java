@@ -22,7 +22,7 @@ public class FileSaver {
 
     public void save(){
         try(BufferedWriter bf = Files.newBufferedWriter(Paths.get(file.toURI()))){
-            bf.write(results.toSummaryString("Results of "+file.getName() +"\n\n", false));
+            bf.write(results.toSummaryString("Results of "+file.getName() +"\n\n", true));
         }catch (IOException ioe){
             ioe.printStackTrace();
         }
