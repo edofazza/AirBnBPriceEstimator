@@ -18,14 +18,13 @@ public class FileSaver {
     private int foldNum;
     private List<Attribute> chosenAttributes;
 
-    public FileSaver(Evaluation results, String algorithmName, String attributeSelectionName, int fold, Enumeration<Attribute> chosen){
+    public FileSaver(Evaluation results, String algorithmName, String attributeSelectionName, int fold, List<Attribute> chosen){
         String pathName = "results/" + algorithmName;
         if(attributeSelectionName!=null)
             pathName=pathName + "_With_" + attributeSelectionName;
         file = new File(pathName);
         this.foldNum=fold;
-        while(chosen.hasMoreElements())
-            chosenAttributes.add(chosen.nextElement());
+        this.chosenAttributes = chosen;
         this.results=results;
     }
 

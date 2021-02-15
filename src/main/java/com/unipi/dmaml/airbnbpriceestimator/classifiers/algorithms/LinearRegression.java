@@ -12,7 +12,9 @@ import weka.classifiers.Evaluation;
 import weka.classifiers.meta.AttributeSelectedClassifier;
 import weka.core.Instances;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Random;
 
 public class LinearRegression {
@@ -72,12 +74,15 @@ public class LinearRegression {
     private void executeCV(Instances dataset, int currentFold, AttributeSelection filter, String filterName) throws Exception {
         Instances train = dataset.trainCV(numFolds, currentFold);
         Instances test = dataset.testCV(numFolds, currentFold);
-        Enumeration<Attribute> chosen=null;
+        List<Attribute> chosen=new ArrayList<>();
         if(filter!=null) {
             filter.setInputFormat(train);
-            train = Filter.useFilter(train, filter);
-            test = Filter.useFilter(test, filter);
-            chosen = train.enumerateAttributes();
+            Instances trainReduced = Filter.useFilter(train, filter);
+            Instances testReduced = Filter.useFilter(test, filter);
+            train = new Instances(trainReduced);
+            test = new Instances(testReduced);
+            for(int i=0; i<train.numAttributes(); i++)
+                chosen.add(train.attribute(i));
         }
         weka.classifiers.functions.LinearRegression classifier = new weka.classifiers.functions.LinearRegression();
         classifier.buildClassifier(train);
