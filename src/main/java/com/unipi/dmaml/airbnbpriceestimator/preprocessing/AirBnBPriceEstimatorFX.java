@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class AirBnBPriceEstimatorFX extends Application {
-    private final int width = 600;
+    private final int width = 550;
     private final int height = 700;
 
     public static void main(String[] args) {
