@@ -31,9 +31,10 @@ public class FileSaver {
     public void save(){
         try(BufferedWriter bf = Files.newBufferedWriter(Paths.get(file.toURI()), StandardOpenOption.APPEND)){
             bf.write(results.toSummaryString("Results of "+file.getName() + "\tfold n."+ foldNum + "\n\n", false));
-            bf.write("\n Selected Features:\n");
+            bf.write("\n Selected Features: " + chosenAttributes.size() + "\n");
             for(Attribute a: chosenAttributes)
-                bf.write(a.name() + " : " + a.index() + "\n");
+                bf.write(a.name() +  "\n");
+            bf.write("\n\n");
         }catch (IOException ioe){
             ioe.printStackTrace();
         }

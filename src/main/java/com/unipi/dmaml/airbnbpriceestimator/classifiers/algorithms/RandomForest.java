@@ -7,6 +7,7 @@ import weka.attributeSelection.GreedyStepwise;
 import weka.classifiers.Evaluation;
 import weka.core.Attribute;
 import weka.core.Instances;
+import weka.core.SerializationHelper;
 import weka.filters.Filter;
 import weka.filters.supervised.attribute.AttributeSelection;
 
@@ -85,5 +86,7 @@ public class RandomForest {
         Evaluation evaluation = new Evaluation(train);
         evaluation.evaluateModel(classifier, test);
         new FileSaver(evaluation, "RandomForest", filterName, currentFold, chosen).save();
+        if(currentFold==8)
+            SerializationHelper.write("results/RandomForest" + filterName + ".model", classifier);
     }
 }

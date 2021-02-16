@@ -4,6 +4,7 @@ import com.unipi.dmaml.airbnbpriceestimator.classifiers.saver.FileSaver;
 import org.w3c.dom.Attr;
 import weka.attributeSelection.GreedyStepwise;
 import weka.core.Attribute;
+import weka.core.SerializationHelper;
 import weka.filters.Filter;
 import weka.filters.supervised.attribute.AttributeSelection;
 import weka.attributeSelection.BestFirst;
@@ -89,6 +90,8 @@ public class LinearRegression {
         Evaluation evaluation = new Evaluation(train);
         evaluation.evaluateModel(classifier, test);
         new FileSaver(evaluation, "LinearRegression", filterName, currentFold, chosen).save();
+        if(currentFold==8)
+            SerializationHelper.write("results/LinearRegression" + filterName + ".model", classifier);
     }
 
 }
