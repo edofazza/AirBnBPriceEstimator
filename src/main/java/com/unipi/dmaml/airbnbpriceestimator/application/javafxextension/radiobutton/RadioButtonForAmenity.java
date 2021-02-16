@@ -1,4 +1,4 @@
-package com.unipi.dmaml.airbnbpriceestimator.preprocessing.javafxextension.radiobutton;
+package com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.radiobutton;
 
 import javafx.scene.control.RadioButton;
 

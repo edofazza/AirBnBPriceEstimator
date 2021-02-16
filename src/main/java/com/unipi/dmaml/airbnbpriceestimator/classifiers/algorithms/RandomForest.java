@@ -8,9 +8,11 @@ import weka.classifiers.Evaluation;
 import weka.core.Attribute;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
+import weka.core.converters.ArffSaver;
 import weka.filters.Filter;
 import weka.filters.supervised.attribute.AttributeSelection;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -87,6 +89,14 @@ public class RandomForest {
         evaluation.evaluateModel(classifier, test);
         new FileSaver(evaluation, "RandomForest", filterName, currentFold, chosen).save();
         if(currentFold==8)
-            SerializationHelper.write("results/RandomForest" + filterName + ".model", classifier);
+            saveModel(filterName, classifier, test);
+    }
+
+    private void saveModel(String filterName, weka.classifiers.trees.RandomForest classifier, Instances dataFormat) throws Exception{
+        SerializationHelper.write("models/RandomForest_" + filterName + ".model", classifier);
+        ArffSaver saver = new ArffSaver();
+        saver.setInstances(dataFormat);
+        saver.setFile(new File("models/RandomForest_" + filterName + "_data.arff"));
+        saver.writeBatch();
     }
 }

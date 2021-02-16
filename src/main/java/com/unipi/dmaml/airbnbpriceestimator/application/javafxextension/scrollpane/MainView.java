@@ -1,10 +1,10 @@
-package com.unipi.dmaml.airbnbpriceestimator.preprocessing.javafxextension.scrollpane;
+package com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.scrollpane;
 
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.javafxextension.pane.HorizontalPaneWithRadioButtons;
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.javafxextension.pane.HorizontalPaneWithTextFields;;
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.javafxextension.radiobutton.RadioButtonForAmenity;
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.javafxextension.textfields.OnlyCharactersTextField;
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.javafxextension.textfields.OnlyDecimalsTextField;
+import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.pane.HorizontalPaneWithRadioButtons;
+import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.pane.HorizontalPaneWithTextFields;;
+import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.radiobutton.RadioButtonForAmenity;
+import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.textfields.OnlyCharactersTextField;
+import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.textfields.OnlyDecimalsTextField;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;

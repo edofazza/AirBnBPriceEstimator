@@ -5,6 +5,7 @@ import org.w3c.dom.Attr;
 import weka.attributeSelection.GreedyStepwise;
 import weka.core.Attribute;
 import weka.core.SerializationHelper;
+import weka.core.converters.ArffSaver;
 import weka.filters.Filter;
 import weka.filters.supervised.attribute.AttributeSelection;
 import weka.attributeSelection.BestFirst;
@@ -13,6 +14,7 @@ import weka.classifiers.Evaluation;
 import weka.classifiers.meta.AttributeSelectedClassifier;
 import weka.core.Instances;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -91,7 +93,15 @@ public class LinearRegression {
         evaluation.evaluateModel(classifier, test);
         new FileSaver(evaluation, "LinearRegression", filterName, currentFold, chosen).save();
         if(currentFold==8)
-            SerializationHelper.write("results/LinearRegression" + filterName + ".model", classifier);
+            saveModel(filterName, classifier, test);
+    }
+
+    private void saveModel(String filterName, weka.classifiers.functions.LinearRegression classifier, Instances dataFormat) throws Exception{
+        SerializationHelper.write("models/LinearRegression_" + filterName + ".model", classifier);
+        ArffSaver saver = new ArffSaver();
+        saver.setInstances(dataFormat);
+        saver.setFile(new File("models/LinearRegression_" + filterName + "_data.arff"));
+        saver.writeBatch();
     }
 
 }

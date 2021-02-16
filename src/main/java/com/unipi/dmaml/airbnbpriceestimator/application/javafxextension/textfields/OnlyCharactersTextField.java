@@ -1,4 +1,4 @@
-package com.unipi.dmaml.airbnbpriceestimator.preprocessing.javafxextension.textfields;
+package com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.textfields;
 
 import javafx.scene.control.TextField;
 
