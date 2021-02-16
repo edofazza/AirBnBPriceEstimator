@@ -65,7 +65,7 @@ public class RandomForest {
                 executeCV(randData, i, filter, "CfsSubsetEval+GreedyStepwise");
             }
 
-            System.out.println("linear regression with attribute selection terminated");
+            System.out.println("RandomForest with attribute selection terminated");
 
         } catch (Exception e) {
             e.printStackTrace();
