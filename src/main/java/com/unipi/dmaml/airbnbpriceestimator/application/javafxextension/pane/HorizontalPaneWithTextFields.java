@@ -33,11 +33,13 @@ public class HorizontalPaneWithTextFields extends Pane implements IHorizontalPan
     public List<Pair<String, String>> getResult() {
         List<Pair<String, String>> pairList = new ArrayList<>();
 
-        Pair<String, String> pair = new Pair<>(gtf1.getPromptText(), gtf1.getText());
+        gtf1.setText(gtf1.getText().substring(0, 1).toUpperCase() + gtf1.getText().substring(1));
+        Pair<String, String> pair = new Pair<>(gtf1.getPromptText(), gtf1.getText().replaceAll("\\s+$", "").replace(" ", "_"));
         pairList.add(pair);
 
         if (gtf2 != null) {
-            pair = new Pair<>(gtf2.getPromptText(), gtf2.getText());
+            gtf2.setText(gtf2.getText().substring(0, 1).toUpperCase() + gtf2.getText().substring(1));
+            pair = new Pair<>(gtf2.getPromptText(), gtf2.getText().replaceAll("\\s+$", "").replace(" ", "_"));
             pairList.add(pair);
         }
         return pairList;
