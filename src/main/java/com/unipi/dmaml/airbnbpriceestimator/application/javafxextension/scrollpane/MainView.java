@@ -78,7 +78,14 @@ public class MainView extends ScrollPane {
 
     public void buttonAction(InstanceClassifier instanceClassifier) {
         vBox.getChildren().remove(label);
-        label = new Label("PREDICTED PRICE: " + instanceClassifier.predictPrice(computeFields()));
+        double value = instanceClassifier.predictPrice(computeFields());
+
+        long factor = (long) Math.pow(10, 2);
+        value = value * factor;
+        long tmp = Math.round(value);
+        double price = (double) tmp / factor;
+
+        label = new Label("PREDICTED PRICE: " + price);
         vBox.getChildren().add(label);
     }
 
