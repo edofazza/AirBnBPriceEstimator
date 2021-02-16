@@ -5,11 +5,8 @@ import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.pane.Hor
 import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.pane.IHorizontalPane;
 import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.radiobutton.RadioButtonForAmenity;
 import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.textfields.GeneralTextField;
-import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.textfields.OnlyCharactersTextField;
-import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.textfields.OnlyDecimalsTextField;
 import com.unipi.dmaml.airbnbpriceestimator.application.prediction.InstanceClassifier;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 
@@ -22,6 +19,7 @@ public class MainView extends ScrollPane {
     private List<IHorizontalPane> paneList = new ArrayList<>();
     private Label label;
     private List<Pair<String, String>> pairList;
+    private boolean priceAttribute = false;
 
     public MainView(int width, int height) {
         setPrefSize(width, height);
@@ -37,6 +35,11 @@ public class MainView extends ScrollPane {
         List<String> amenities = new ArrayList<>();
         List<String> normalFeature = new ArrayList<>();
         for (Pair<String, String> pair: pairList) {
+            if (pair.getKey().equals("price")) {
+                priceAttribute = true;
+                continue;
+            }
+
             if (pair.getKey().toLowerCase(Locale.ROOT).equals(pair.getKey()))
                 normalFeature.add(pair.getKey());
             else
@@ -96,6 +99,9 @@ public class MainView extends ScrollPane {
         for (IHorizontalPane pane: paneList) {
             pairListUser.addAll(pane.getResult());
         }
+
+        if (priceAttribute)
+            pairListUser.add(new Pair<>("price", "0"));
 
         for (Pair<String, String> pair: pairList) {
             for (Pair<String, String> p : pairListUser) {
