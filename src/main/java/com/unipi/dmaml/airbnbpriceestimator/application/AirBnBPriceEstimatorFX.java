@@ -16,7 +16,7 @@ public class AirBnBPriceEstimatorFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        MainView mainView = new MainView(width);
+        MainView mainView = new MainView(width, height);
         Group group = new Group(mainView);
 
         Scene scene = new Scene(group, width, height);
