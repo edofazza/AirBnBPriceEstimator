@@ -1,4 +1,4 @@
-package com.unipi.dmaml.airbnbpriceestimator.preprocessing;
+package com.unipi.dmaml.airbnbpriceestimator.application;
 
 import com.unipi.dmaml.airbnbpriceestimator.application.javafxextension.scrollpane.MainView;
 import javafx.application.Application;
