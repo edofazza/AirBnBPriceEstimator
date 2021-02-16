@@ -20,6 +20,8 @@ import java.util.Locale;
 public class MainView extends ScrollPane {
     private VBox vBox = new VBox();
     private List<IHorizontalPane> paneList = new ArrayList<>();
+    private Label label;
+    private List<Pair<String, String>> pairList;
 
     public MainView(int width, int height) {
         setPrefSize(width, height);
@@ -29,7 +31,7 @@ public class MainView extends ScrollPane {
         setContent(vBox);
 
         InstanceClassifier instanceClassifier = new InstanceClassifier();
-        List<Pair<String, String>> pairList = instanceClassifier.getAttributes();
+        pairList = instanceClassifier.getAttributes();
 
         // I LIST ALL THE FIELDS DIVIDING AMENITIES FROM THE REST
         List<String> amenities = new ArrayList<>();
@@ -40,11 +42,8 @@ public class MainView extends ScrollPane {
             else
                 amenities.add(pair.getKey());
         }
-        System.out.println(normalFeature.size());
-        System.out.println(amenities.size());
 
         int loop = (normalFeature.size() % 2 == 0 ? normalFeature.size() : normalFeature.size() + 1)/2;
-        System.out.println(loop);
         for (int i = 0; i < loop; i++) {
             GeneralTextField textField1 = new GeneralTextField(50, 50, normalFeature.get(i*2));
 
@@ -78,19 +77,28 @@ public class MainView extends ScrollPane {
     }
 
     public void buttonAction(InstanceClassifier instanceClassifier) {
-
-
-        Label label = new Label("PREDICTED PRICE: " + instanceClassifier.predictPrice(computeFields()));
+        vBox.getChildren().remove(label);
+        label = new Label("PREDICTED PRICE: " + instanceClassifier.predictPrice(computeFields()));
         vBox.getChildren().add(label);
     }
 
     public List<Pair<String, String>> computeFields() {
-        List<Pair<String, String>> pairList = new ArrayList<>();
+        List<Pair<String, String>> pairListUser = new ArrayList<>();
+        List<Pair<String, String>> result = new ArrayList<>();
 
         for (IHorizontalPane pane: paneList) {
-            pairList.addAll(pane.getResult());
+            pairListUser.addAll(pane.getResult());
         }
 
-        return pairList;
+        for (Pair<String, String> pair: pairList) {
+            for (Pair<String, String> p : pairListUser) {
+                if (p.getKey().equals(pair.getKey())) {
+                    result.add(p);
+                    break;
+                }
+            }
+        }
+
+        return result;
     }
 }

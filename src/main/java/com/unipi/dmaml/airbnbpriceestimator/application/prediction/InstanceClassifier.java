@@ -30,8 +30,9 @@ public class InstanceClassifier implements Predictor{
             toClassify.delete();
             toClassify.add(i);
             toClassify.setClass(toClassify.attribute("price"));
-            classifier.classifyInstance(toClassify.firstInstance());
-            return toClassify.firstInstance().classValue();
+
+            System.out.println(toClassify.instance(0).toString());
+            return classifier.classifyInstance(toClassify.firstInstance());
         }catch (Exception e){
             e.printStackTrace();
         }
