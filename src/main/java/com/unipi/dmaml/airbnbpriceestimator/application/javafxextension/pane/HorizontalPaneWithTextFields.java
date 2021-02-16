@@ -24,7 +24,7 @@ public class HorizontalPaneWithTextFields extends Pane implements IHorizontalPan
 
         if (gtf2 != null) {
             Label label2 = new Label(gtf2.getPromptText());
-            label2.relocate(350, 30);
+            label2.relocate(300, 30);
             getChildren().addAll(gtf2, label2);
         }
     }

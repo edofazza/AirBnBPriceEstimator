@@ -40,36 +40,41 @@ public class MainView extends ScrollPane {
             else
                 amenities.add(pair.getKey());
         }
+        System.out.println(normalFeature.size());
+        System.out.println(amenities.size());
 
         int loop = (normalFeature.size() % 2 == 0 ? normalFeature.size() : normalFeature.size() + 1)/2;
+        System.out.println(loop);
         for (int i = 0; i < loop; i++) {
             GeneralTextField textField1 = new GeneralTextField(50, 50, normalFeature.get(i*2));
 
             GeneralTextField textField2 = null;
             try {
-               textField2 = new GeneralTextField(50, 350, normalFeature.get(i*2 + 1));
+               textField2 = new GeneralTextField(300, 50, normalFeature.get(i*2 + 1));
             } catch (Exception e) {}
 
-            HorizontalPaneWithTextFields horizontalPaneWithTextFields = new HorizontalPaneWithTextFields(width, textField1, textField2);
+            HorizontalPaneWithTextFields horizontalPaneWithTextFields = new HorizontalPaneWithTextFields(width - 20 , textField1, textField2);
             paneList.add(horizontalPaneWithTextFields);
+            vBox.getChildren().add(horizontalPaneWithTextFields);
         }
 
         loop = (amenities.size() % 2 == 0 ? amenities.size() : amenities.size() + 1)/2;
         for (int i = 0; i < loop; i++) {
-            RadioButtonForAmenity radioButton1 = new RadioButtonForAmenity(50, 50, normalFeature.get(i*2));
+            RadioButtonForAmenity radioButton1 = new RadioButtonForAmenity(50, 50, amenities.get(i*2));
             RadioButtonForAmenity radioButton2 = null;
 
             try {
-                radioButton2 = new RadioButtonForAmenity(50, 350, normalFeature.get(i*2 + 1));
+                radioButton2 = new RadioButtonForAmenity(300, 50, amenities.get(i*2 + 1));
             } catch (Exception e) {}
 
-            HorizontalPaneWithRadioButtons horizontalPaneWithRadioButtons = new HorizontalPaneWithRadioButtons(width, radioButton1, radioButton2);
+            HorizontalPaneWithRadioButtons horizontalPaneWithRadioButtons = new HorizontalPaneWithRadioButtons(width - 20, radioButton1, radioButton2);
             paneList.add(horizontalPaneWithRadioButtons);
+            vBox.getChildren().add(horizontalPaneWithRadioButtons);
         }
 
         Button button = new Button("PREDICT PRICE");
         button.setOnAction(e -> buttonAction(instanceClassifier));
-        vBox.getChildren().add(button);
+        vBox.getChildren().addAll(button);
     }
 
     public void buttonAction(InstanceClassifier instanceClassifier) {
