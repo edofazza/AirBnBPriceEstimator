@@ -1,18 +1,141 @@
 \section{Classification}
+After the preprocessing phase, the dataset is ready to be used to learn regression models that will be used in the final application. In the following chapter all the chosen strategies are discussed, and the results are compared.
+
+
 
 \subsection{Strategies}
-Come dividiamo train e test, quali classificatori scegliamo, quali algoritmi di attribute selection
-
 \subsubsection{Train and Test Splitting}
+All the classifiers have been evaluated with the same strategy: \textit{10-fold cross validation}. This means that a model is learned from the folds of the training set (90\%) and they are evaluated against the corresponding test fold (10\%); then the operation is repeated 10 times, and at each iteration a different fold acts as test set.
+
+Despite the fact that Weka provides the \textbf{Evaluation.crossValidateModel()} method, we wanted to save the results of every fold and to have access to the selected attributes in case of algorithm with feature selection.
+
+For these reasons, instead of using a meta classifier, we manually split training set and test set through the \textit{Weka} provided functions \textbf{Instances.trainCV(numFolds, currentFold)} and \textbf{Instances.testCV(numFolds, currentFold)} according to the \textit{WekaWiki tutorial} on how to manually construct a \textit{k-fold cross validation}; then the \textit{attribute selection} algorithms (when present) have been built exclusively on the training set but applied both to training and to test set.
+
+Finally, we saved the results of each fold, but since we need only a model of the classifier while this procedure generates 10 different models, we picked the one with the lowest \textit{root mean squared error}, aware that this does not necessarily means that we chose the best one
+
+
 
 \subsubsection{Chosen Classifiers}
+According to our application domain, the classifiers needed are actually regression algorithms capable of handling our non-nominal class. The selected algorithms have been tested both on the full dimensionality of the dataset (138 features) and on the reduced subspaces identified by the supervised attribute selection methods. Once again, we underline the fact that those features selection algorithms have been modeled exclusively on the bases of the training set. They are \textit{CfsSubsetEval+BestFirst} and \textit{CfsSubsetEval+GreedyStepwise}.
+
+We couldn’t exploit the \textit{InfoGain} evaluator since it is not capable of working with numerical classes; we discarded \textit{PCA} since it works transforming dimensions, thus it would be difficult to understand if we could have afforded to ask only for a limited number of parameters to input from the user in the final application (\textbf{e.g.}, if \textit{CfsSubsetEval+BestFirst} selects only 3 attributes, we can create an application that requires only 3 parameters as input. With \textit{PCA} we don’t know which original features has been chosen in order to generate the new space, so we are forced to ask the user to input alle the 138 parameters); eventually, we discard the use of a wrapped classifier in order not to deteriorate much the performance of the application.
+
+To summarize, the tested classifiers are:
+\begin{itemize}
+	\item \textit{Linear Regression, Linear Regression with attribute selection}
+	\item \textit{Random Forest, Random Forest with attribute selection}
+	\item \textit{5-NN, 5-NN with attribute selection}
+	\item \textit{M5Rules with and without attribute selection}
+\end{itemize}
+
+
+
 
 \subsection{Building Classification Models}
-Metterci anche il codice
+On the following pictures the implementation of the classifiers is reported.
+The main method is not here shown, it simply loads data and triggers the algorithm. A multithreaded approach has been tested but not implemented since the huge amount of principal memory consumption due to the model building made the system fail more than once.
 
-\subsubsection{Procedure}
+\subsubsection{Data Loading}
+\begin{lstlisting}[language=Java]
+public Instances loadData() {
+	Instances data=null;
+        try {
+            ConfigurationData configurationData = getConfigData();
+            CSVLoader loader= new CSVLoader();
+            loader.setDateAttributes(configurationData.dateAttributes);
+            loader.setDateFormat(configurationData.dateFormat);
+            loader.setEnclosureCharacters("\"");
+            loader.setFieldSeparator(",");
+            loader.setMissingValue("?");
+            loader.setNominalAttributes(configurationData.nominalAttributes);
+            loader.setNumericAttributes(configurationData.numericAttributes);
+            loader.setSource(new File(datasetPath));
+            data=loader.getDataSet();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return data;
+}
 
-\subsubsection{Implementation}
+private ConfigurationData getConfigData() throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(ConfigurationData.class);
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        ConfigurationData conf = (ConfigurationData) jaxbUnmarshaller.unmarshal(new File(confDataPath));
+        System.out.println(conf.dateAttributes + "\n" + conf.dateFormat + "\n" + conf.numericAttributes);
+        return conf;
+}
+\end{lstlisting}
+
+\textbf{DatasetFromCsvLoader.java} is the class in charge of loading the dataset stored as a \textit{CSV file}. It simply uses the \textit{Weka CSVLoader} but the options have been saved in a configuration file, so that to maximize the separation of concerns between the \textit{Weka} internal representation of the data and our code.
+
+\subsubsection{Classifier Definition}
+\begin{lstlisting}[language=Java]
+private void buildLinearRegressionWithAttributeSelection() {
+        try{
+            Instances randData = new Instances(dataset);
+            randData.randomize(new Random(1));
+
+            for(int i=0; i<numFolds; i++){
+                AttributeSelection filter = new AttributeSelection();
+                filter.setEvaluator(new CfsSubsetEval());
+                filter.setSearch(new BestFirst());
+                executeCV(randData, i, filter, "CfsSubsetEval+BestFirst");
+            }
+
+            randData = new Instances(dataset);
+            randData.randomize(new Random(1));
+
+            for(int i=0; i<numFolds; i++){
+                AttributeSelection filter = new AttributeSelection();
+                filter.setEvaluator(new CfsSubsetEval());
+                filter.setSearch(new GreedyStepwise());
+                executeCV(randData, i, filter, "CfsSubsetEval+GreedyStepwise");
+            }
+
+            System.out.println("linear regression with attribute selection terminated");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+}
+\end{lstlisting}
+
+Every algorithm is implemented in a separate class, which contains different methods based on the way we want to test it (\textit{with} or \textit{w/o} attribute selection). In the code shown the classifier definition is reported: after a randomization of the dataset, we call \textit{numFolds} time the \textbf{executeCV()} that performs a single round of the \textit{cross-validation}.
+
+\subsubsection{Classifier Implementation}
+\begin{lstlisting}[language=Java]
+private void executeCV(Instances dataset, int currentFold, AttributeSelection filter, String filterName) throws Exception {
+        Instances train = dataset.trainCV(numFolds, currentFold);
+        Instances test = dataset.testCV(numFolds, currentFold);
+        List<Attribute> chosen=new ArrayList<>();
+        if(filter!=null) {
+            filter.setInputFormat(train);
+            Instances trainReduced = Filter.useFilter(train, filter);
+            Instances testReduced = Filter.useFilter(test, filter);
+            train = new Instances(trainReduced);
+            test = new Instances(testReduced);
+            for(int i=0; i<train.numAttributes(); i++)
+                chosen.add(train.attribute(i));
+        }
+        weka.classifiers.functions.LinearRegression classifier = new weka.classifiers.functions.LinearRegression();
+        classifier.buildClassifier(train);
+        Evaluation evaluation = new Evaluation(train);
+        evaluation.evaluateModel(classifier, test);
+        new FileSaver(evaluation, "LinearRegression", filterName, currentFold, chosen).save();
+        if(currentFold==8)
+            saveModel(filterName, classifier, test);
+    }
+
+private void saveModel(String filterName, weka.classifiers.functions.LinearRegression classifier, Instances dataFormat) throws Exception{
+        SerializationHelper.write("models/LinearRegression_" + filterName + ".model", classifier);
+        ArffSaver saver = new ArffSaver();
+        saver.setInstances(dataFormat);
+        saver.setFile(new File("models/LinearRegression_" + filterName + "_data.arff"));
+        saver.writeBatch();
+    }
+\end{lstlisting}
+
+In this method we perform a round of the \textbf{10-fold cross validation}, in the way suggested by the \textit{WekaWiki tutorial}. At each iteration, the \textit{trainCV} and \textit{testCV} return non-overlapping training sets and test sets; if an attribute selection method has been defined, it is built on top of the training set and applied to both of them and the list of the chosen attributes is stored. In the end, the model built on the \textbf{fold n.8} is stored in a \textit{.model} file. 
 
 \subsection{Performance Evaluation and Effects od Attribute Selection}
 Metterci codice, screenshots, procedure di valutazione e un SACCO DI ROBA

@@ -18,12 +18,13 @@
 \contentsline {subsection}{\numberline {3.1}Strategies}{10}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}Train and Test Splitting}{10}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Chosen Classifiers}{10}{subsubsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.2}Building Classification Models}{10}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Procedure}{10}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Implementation}{10}{subsubsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.3}Performance Evaluation and Effects od Attribute Selection}{10}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Conclusions}{10}{subsection.3.4}%
-\contentsline {section}{\numberline {4}AirBnb Price Estimator App}{11}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Introduction}{11}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Functional Requirements}{11}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Application Guide}{11}{subsection.4.3}%
+\contentsline {subsection}{\numberline {3.2}Building Classification Models}{11}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Data Loading}{11}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Classifier Definition}{11}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Classifier Implementation}{12}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.3}Performance Evaluation and Effects od Attribute Selection}{13}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Conclusions}{13}{subsection.3.4}%
+\contentsline {section}{\numberline {4}AirBnb Price Estimator App}{14}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Introduction}{14}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Functional Requirements}{14}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Application Guide}{14}{subsection.4.3}%
