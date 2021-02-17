@@ -11,7 +11,7 @@
 \BOOKMARK [2][-]{subsection.2.4}{Data Transformation}{section.2}% 11
 \BOOKMARK [3][-]{subsubsection.2.4.1}{Attribute Formats Transformation}{subsection.2.4}% 12
 \BOOKMARK [3][-]{subsubsection.2.4.2}{One Hot for the Amenities}{subsection.2.4}% 13
-\BOOKMARK [3][-]{subsubsection.2.4.3}{Amenities' Hot Vector refinements}{subsection.2.4}% 14
+\BOOKMARK [3][-]{subsubsection.2.4.3}{Amenities' One Hot refinements}{subsection.2.4}% 14
 \BOOKMARK [2][-]{subsection.2.5}{Preprocessing Implementation}{section.2}% 15
 \BOOKMARK [1][-]{section.3}{Classification}{}% 16
 \BOOKMARK [2][-]{subsection.3.1}{Strategies}{section.3}% 17

@@ -12,7 +12,7 @@
 \contentsline {subsection}{\numberline {2.4}Data Transformation}{5}{subsection.2.4}%
 \contentsline {subsubsection}{\numberline {2.4.1}Attribute Formats Transformation}{5}{subsubsection.2.4.1}%
 \contentsline {subsubsection}{\numberline {2.4.2}One Hot for the Amenities}{6}{subsubsection.2.4.2}%
-\contentsline {subsubsection}{\numberline {2.4.3}Amenities' Hot Vector refinements}{6}{subsubsection.2.4.3}%
+\contentsline {subsubsection}{\numberline {2.4.3}Amenities' One Hot refinements}{6}{subsubsection.2.4.3}%
 \contentsline {subsection}{\numberline {2.5}Preprocessing Implementation}{9}{subsection.2.5}%
 \contentsline {section}{\numberline {3}Classification}{10}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Strategies}{10}{subsection.3.1}%
