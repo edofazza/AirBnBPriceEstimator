@@ -37,7 +37,7 @@ public class RandomForest {
             randData.randomize(new Random(1));
 
             for(int i=0; i<numFolds; i++){
-                executeCV(randData, i, null, null);
+                executeCV(randData, i, null, "");
             }
             System.out.println("linear regression terminated");
         }catch (Exception e){e.printStackTrace();}
