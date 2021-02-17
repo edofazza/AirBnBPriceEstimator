@@ -1,39 +1,36 @@
 package com.unipi.dmaml.airbnbpriceestimator.classifiers.algorithms;
 
 import com.unipi.dmaml.airbnbpriceestimator.classifiers.saver.FileSaver;
-import org.w3c.dom.Attr;
+import weka.attributeSelection.BestFirst;
+import weka.attributeSelection.CfsSubsetEval;
 import weka.attributeSelection.GreedyStepwise;
+import weka.classifiers.Evaluation;
 import weka.core.Attribute;
+import weka.core.Instances;
 import weka.core.SerializationHelper;
 import weka.core.converters.ArffSaver;
 import weka.filters.Filter;
 import weka.filters.supervised.attribute.AttributeSelection;
-import weka.attributeSelection.BestFirst;
-import weka.attributeSelection.CfsSubsetEval;
-import weka.classifiers.Evaluation;
-import weka.classifiers.meta.AttributeSelectedClassifier;
-import weka.core.Instances;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.Random;
 
-public class LinearRegression {
+public class M5Rules {
     private Instances dataset;
     private final int numFolds=10;
 
-    public LinearRegression(Instances dataset){
+    public M5Rules(Instances dataset){
         this.dataset=dataset;
     }
 
     public void buildClassifiersAndSaveResults(){
-        //buildLinearRegression();
-        buildLinearRegressionWithAttributeSelection();
+        buildM5Rules();
+        buildM5RulesWithAttributeSelection();
     }
 
-    private void buildLinearRegression(){
+    private void buildM5Rules(){
         try {
             Instances randData = new Instances(dataset);
             randData.randomize(new Random(1));
@@ -41,11 +38,11 @@ public class LinearRegression {
             for(int i=0; i<numFolds; i++){
                 executeCV(randData, i, null, "");
             }
-            System.out.println("linear regression terminated");
+            System.out.println("m5rules terminated");
         }catch (Exception e){e.printStackTrace();}
     }
 
-    private void buildLinearRegressionWithAttributeSelection(){
+    private void buildM5RulesWithAttributeSelection(){
         try{
             Instances randData = new Instances(dataset);
             randData.randomize(new Random(1));
@@ -67,7 +64,7 @@ public class LinearRegression {
                 executeCV(randData, i, filter, "CfsSubsetEval+GreedyStepwise");
             }
 
-            System.out.println("linear regression with attribute selection terminated");
+            System.out.println("m5rules with attribute selection terminated");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,21 +84,20 @@ public class LinearRegression {
             for(int i=0; i<train.numAttributes(); i++)
                 chosen.add(train.attribute(i));
         }
-        weka.classifiers.functions.LinearRegression classifier = new weka.classifiers.functions.LinearRegression();
+        weka.classifiers.rules.M5Rules classifier = new weka.classifiers.rules.M5Rules();
         classifier.buildClassifier(train);
         Evaluation evaluation = new Evaluation(train);
         evaluation.evaluateModel(classifier, test);
-        new FileSaver(evaluation, "LinearRegression", filterName, currentFold, chosen).save();
+        new FileSaver(evaluation, "M5Rules", filterName, currentFold, chosen).save();
         if(currentFold==8)
             saveModel(filterName, classifier, test);
     }
 
-    private void saveModel(String filterName, weka.classifiers.functions.LinearRegression classifier, Instances dataFormat) throws Exception{
-        SerializationHelper.write("models/LinearRegression_" + filterName + ".model", classifier);
+    private void saveModel(String filterName, weka.classifiers.rules.M5Rules classifier, Instances dataFormat) throws Exception{
+        SerializationHelper.write("models/M5Rules_" + filterName + ".model", classifier);
         ArffSaver saver = new ArffSaver();
         saver.setInstances(dataFormat);
-        saver.setFile(new File("models/LinearRegression_" + filterName + "_data.arff"));
+        saver.setFile(new File("models/M5Rules_" + filterName + "_data.arff"));
         saver.writeBatch();
     }
-
 }
