@@ -20,7 +20,7 @@ public class FileSaver {
 
     public FileSaver(Evaluation results, String algorithmName, String attributeSelectionName, int fold, List<Attribute> chosen){
         String pathName = "results/" + algorithmName;
-        if(attributeSelectionName!=null || !attributeSelectionName.equals(""))
+        if(attributeSelectionName!=null && !attributeSelectionName.equals(""))
             pathName=pathName + "_With_" + attributeSelectionName;
         pathName = pathName + ".txt";
         file = new File(pathName);
