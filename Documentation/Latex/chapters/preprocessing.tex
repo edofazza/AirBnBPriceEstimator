@@ -78,7 +78,7 @@ Structured in this way they were difficult to process. Because many machine lear
 	\includegraphics[width=0.6\textwidth]{img/onehot.png}  
 \end{figure}
 
-\subsubsection{Amenities' Hot Vector refinements}
+\subsubsection{Amenities' One Hot refinements}
 The number of columns obtained was very huge, more than three hundreds, so we needed to reduced them in some ways. We notice that few of them were irrelevant and the most of them were redundant, for all of these we did not compute the $\chi^2$ test because of the explicit correlation between the features (\textit{e.g.}, Keurig coffee machine, Coffee maker, Nespresso machine) but we simply merge them.
 
 The irrelevant columns we removed through code, they were: 
