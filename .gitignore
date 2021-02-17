@@ -27,4 +27,4 @@ listings.csv
 result.csv
 csv/preprocessing/*.csv
 models
-results/*.txt
+results
