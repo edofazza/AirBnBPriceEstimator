@@ -39,7 +39,7 @@ public class Preprocesser {
         Thread t4 = new Thread(new ListToHotVectorHandler());
         t1.start(); t2.start(); t3.start(); t4.start();
         t1.join(); t2.join(); t3.join(); t4.join();
-        System.out.println("Main thread waited everyone");
+        System.out.println("Preprocesser Main thread waited everyone");
 
         // REFINE ONE HOT
         HotVectorHandler tmp = new HotVectorHandler();
