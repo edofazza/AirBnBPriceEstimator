@@ -26,5 +26,5 @@
 \contentsline {subsection}{\numberline {3.4}Evaluation of Significance of the Classifiers' Results}{14}{subsection.3.4}%
 \contentsline {section}{\numberline {4}AirBnb Price Estimator App}{15}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Introduction}{15}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Functional Requirements}{15}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.2}Use Cases List}{15}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Application Guide}{15}{subsection.4.3}%
