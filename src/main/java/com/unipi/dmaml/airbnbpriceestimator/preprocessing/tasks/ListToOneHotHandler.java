@@ -4,7 +4,7 @@ import com.unipi.dmaml.airbnbpriceestimator.preprocessing.utils.HotVectorGenerat
 
 import java.util.List;
 
-public class ListToHotVectorHandler implements Runnable{
+public class ListToOneHotHandler implements Runnable{
     @Override
     public void run() {
         HotVectorGenerator hotVectorGenerator = new HotVectorGenerator();
