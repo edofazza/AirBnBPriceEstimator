@@ -137,7 +137,94 @@ private void saveModel(String filterName, weka.classifiers.functions.LinearRegre
 
 In this method we perform a round of the \textbf{10-fold cross validation}, in the way suggested by the \textit{WekaWiki tutorial}. At each iteration, the \textit{trainCV} and \textit{testCV} return non-overlapping training sets and test sets; if an attribute selection method has been defined, it is built on top of the training set and applied to both of them and the list of the chosen attributes is stored. In the end, the model built on the \textbf{fold n.8} is stored in a \textit{.model} file. 
 
-\subsection{Performance Evaluation and Effects od Attribute Selection}
-Metterci codice, screenshots, procedure di valutazione e un SACCO DI ROBA
 
-\subsection{Conclusions}
+
+
+\subsection{Performance Evaluation and Effects of Attribute Selection}
+Once the classifiers have been built, as anticipated in the par. 3.1 we tested them using a \textbf{10-fold cross validation}. 
+In the following table we report the average values respectively of \textit{correlation coefficient (CC), mean absolute error (mae), root mean squared error (rmse), relative absolute error (rae)} and \textit{root relative squared error (rrse)} for each tested classifier (note that the chosen model, \textit{i.e.} the one built in the $8^{th}$ fold, shows better measures than the average for every tested classifier).
+The green-colored values are the best ones in absolute.
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.5} % Default
+
+	\begin{longtable}{| m{18em} | m{5em} | m{8em} | m{8em} |} 
+		\hline
+		\textbf{ATTIBUTE SELECTION $\Rightarrow$ \newline REGRESSION ALGORITHM $\Downarrow$} & \textbf{None} & \textbf{CfsSubsetEval + BestFirst} & \textbf{CfsSubsetEval + GreedyStepwise} \\
+		\hline
+		\textbf{Linear Regression} & Out of memory error &  $\overline{CC}=0,6793 \newline \overline{Mae}=40,0323 \newline \overline{Rmse}=57,8399 \newline \overline{Rae}=66,9399 \newline \overline{Rrse}=73,3966$ & 0,6794 \newline 40,0308 \newline 57,8339 \newline 66,9375 \newline 73,3891 \\
+		\hline
+		\textbf{Random Forest} & 0.7495 \newline36,0881 \newline52,8727 \newline 60,3423 \newline 67,0864 & 0.6988 \newline
+37,9716 \newline
+56,3332 \newline
+63,4916 \newline
+71,7302 &
+0,7000 \newline
+37,9451\newline
+56,5060\newline
+63,4470\newline
+71,6955\\
+	\hline
+	\textbf{5-NN} & 0,5413 \newline
+46,4003\newline
+67,0074\newline
+77,2522\newline
+84,3622 &
+0,6772\newline
+39,0709\newline
+58,0759\newline
+65,3630\newline
+73,6845 &
+0,6772\newline
+39,0709\newline
+58,0759\newline
+65,3630\newline
+73,6845 \\
+	\hline
+	\textbf{M5Rules} & 
+0,6589\newline
+567,0975\newline
+31.491,7374\newline
+942,2971\newline
+39.372,3750 &
+0,6942\newline
+38,5873\newline
+56,7530\newline
+64,5234\newline
+72,0102 &
+0,6942\newline
+38,5872\newline
+56,7498\newline
+64,5211\newline
+72,0100 \\
+	\hline
+
+	\end{longtable}
+
+\endgroup
+
+
+As shown in the table, \textit{Random Forest} without attribute selection is the algorithm that performs best \textbf{w.r.t.} all the parameters. Note that the attribute selection improved the outcomes of certain algorithms, anyway, deteriorating the ones of \textit{Random Forest}.
+Now we will discuss the pros and cons of each of them, justifying the final choice for our application:
+
+\begin{enumerate}
+	\item All the classifiers without attribute selection are, unfortunately, not very suitable for the usage of the application: they would require the user to input 288 parameters, which is a huge amount of work to do for him/her. On the contrary, all the attribute selected classifier needs less than 30 features.
+	\item \textit{Linear Regression} shows good but not awesome results, it requires not much memory for the model loading and it is very fast at prediction time. However, it showed very long times and high memory consumption at training time.
+	\item \textit{Random Forest} is the one with the best results in absolute, both with and without attribute selection. It is quite fast both to train and to use for prediction, anyway it needs a lot of time and memory for the model to be saved and loaded. Since the considerations at the point 0), we discarded the pure \textit{Random Forest} and we chose \textit{Random Forest with CfsSubsetEval+GreedyStepwise} as the default regression model for our application.
+	\item \textit{K-NN} is definitely inadequate, although it requires very little time and memory for the model to be built (and then also to be loaded), the computational effort is concentrated at prediction time (thus increasing the application response time), and it also shows quite poor results.
+	\item \textit{M5Rules} has very good performances and it needs very little time and memory to save and load the model. The prediction is not so fast, the time required to build the model is terribly long (up to 3 or 4 times more than Random Forest). Anyway, since the majority of the effort is at training time, it is suitable for our application, thus \textit{M5Rules with CfsSubsetEval+GreedyStepwise} has been chosen as backup regression model.
+\end{enumerate}
+
+\subsection{Evaluation of Significance of the Classifiers' Results}
+Once evaluated the performance of the algorithms, the main question is if we can consider those differences statistically significant or not. In order to make such a computation, we used the paired \textbf{Student’s t-test} on the \textit{RMSE} considering all the outcomes of all the folds (of every algorithm we chose only the \textit{CfsSubsetEval+ GreedyStepwise} version). The results are the following ($sig\_rate=5\%, deg=9$):
+
+\begin{itemize}
+	\item \textit{Random Forest} \textbf{w.r.t.} \textit{Linear Regression}: t=5.5342; p=0.004 $\Rightarrow$ stat. sign.
+	\item \textit{Random Forest} against \textit{M5Rules}: t=0.805; p=0.4413 $\Rightarrow$ non stat. sign.
+	\item \textit{M5Rules} against \textit{Linear Regression}: t=5.5104; p=0.032  $\Rightarrow$  stat. sign.
+	\item \textit{Linear Regression} against \textit{KNN}: t=0.6601; p=0.5257 $\Rightarrow$ non stat. sign
+\end{itemize}
+
+ \textit{Random Forest} and \textit{M5Rules} are hence comparable, so they are equally valid for our application. On the contrary, the \textbf{t-test} shows that  \textit{Linear Regression} 's results are much more similar to \textit{KNN} ones rather than to the outcomes of the other two algorithms, thus it has been discarded.
