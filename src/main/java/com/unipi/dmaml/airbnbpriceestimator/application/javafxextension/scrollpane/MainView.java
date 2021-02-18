@@ -21,14 +21,14 @@ public class MainView extends ScrollPane {
     private List<Pair<String, String>> pairList;
     private boolean priceAttribute = false;
 
-    public MainView(int width, int height) {
+    public MainView(int width, int height, char classifier) {
         setPrefSize(width, height);
         setStyle("-fx-background: white; -fx-border-color: white;");
 
         vBox.setSpacing(20);
         setContent(vBox);
 
-        InstanceClassifier instanceClassifier = new InstanceClassifier();
+        InstanceClassifier instanceClassifier = new InstanceClassifier(classifier);
         pairList = instanceClassifier.getAttributes();
 
         // I LIST ALL THE FIELDS DIVIDING AMENITIES FROM THE REST

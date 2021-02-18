@@ -8,13 +8,19 @@ import java.util.*;
 
 public class InstanceClassifier implements Predictor{
     private static Instances model;
+    private static boolean isRandomForest;
+
+    public InstanceClassifier(char c) {
+        isRandomForest = c == 'R';
+    }
+
 
     @Override
     public double predictPrice(List<Pair<String, String>> attributes) {
         try {
             if (model == null)
-                model = Builder.buildInstances();
-            Classifier classifier = Builder.loadClassifier();
+                model = Builder.buildInstances(isRandomForest);
+            Classifier classifier = Builder.loadClassifier(isRandomForest);
             double[] values = new double[attributes.size()];
             for (int i = 0; i < attributes.size(); i++) {
                 Pair<String, String> value = attributes.get(i);
@@ -42,7 +48,7 @@ public class InstanceClassifier implements Predictor{
     @Override
     public List<Pair<String, String>> getAttributes() {
         if(model==null)
-            model = Builder.buildInstances();
+            model = Builder.buildInstances(isRandomForest);
         List<Pair<String, String>> attributes = new ArrayList<>();
         for(int i=0; i<model.numAttributes(); i++){
             Pair<String, String> entry= new Pair<>(model.attribute(i).name(), "");
