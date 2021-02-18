@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class HotVectorGenerator {
+public class OneHotGenerator {
 
     public List<String> getAllFeatures(String path) {
         List<String> featureSet = new ArrayList<>();

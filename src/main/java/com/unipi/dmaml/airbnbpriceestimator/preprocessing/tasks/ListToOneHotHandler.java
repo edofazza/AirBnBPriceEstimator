@@ -1,15 +1,15 @@
 package com.unipi.dmaml.airbnbpriceestimator.preprocessing.tasks;
 
-import com.unipi.dmaml.airbnbpriceestimator.preprocessing.utils.HotVectorGenerator;
+import com.unipi.dmaml.airbnbpriceestimator.preprocessing.utils.OneHotGenerator;
 
 import java.util.List;
 
 public class ListToOneHotHandler implements Runnable{
     @Override
     public void run() {
-        HotVectorGenerator hotVectorGenerator = new HotVectorGenerator();
-        List<String> features = hotVectorGenerator.getAllFeatures("csv/amenities.csv");
-        hotVectorGenerator.sortHeaders(features);
-        hotVectorGenerator.createHotVectorCSV("csv/result.csv", "csv/amenities.csv", features);
+        OneHotGenerator oneHotGenerator = new OneHotGenerator();
+        List<String> features = oneHotGenerator.getAllFeatures("csv/amenities.csv");
+        oneHotGenerator.sortHeaders(features);
+        oneHotGenerator.createHotVectorCSV("csv/result.csv", "csv/amenities.csv", features);
     }
 }

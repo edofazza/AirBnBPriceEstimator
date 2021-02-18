@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 
-public class HotVectorHandler {
+public class OneHotHandler {
     public void operate(String path, String newPath) {
         clearFile(newPath);
 
@@ -183,7 +183,7 @@ public class HotVectorHandler {
     }
 
     public static void main(String[] args) {
-        HotVectorHandler tmp = new HotVectorHandler();
+        OneHotHandler tmp = new OneHotHandler();
         tmp.operate("csv/result.csv", "csv/preprocessing/amenitiesMerged.csv");
     }
 }

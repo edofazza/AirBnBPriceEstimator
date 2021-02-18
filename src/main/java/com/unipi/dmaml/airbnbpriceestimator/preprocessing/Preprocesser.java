@@ -42,7 +42,7 @@ public class Preprocesser {
         System.out.println("Preprocesser Main thread waited everyone");
 
         // REFINE ONE HOT
-        HotVectorHandler tmp = new HotVectorHandler();
+        OneHotHandler tmp = new OneHotHandler();
         tmp.operate("csv/result.csv", "csv/preprocessing/amenitiesMerged.csv");
 
         // MERGE
