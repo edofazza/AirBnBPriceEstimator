@@ -20,8 +20,8 @@ public class ClassifierBuilder {
 
         Instances data = new DatasetFromCsvLoader().loadData();
         data.setClass(data.attribute("price"));
-        //new LinearRegression(data).buildClassifiersAndSaveResults();
-        //new RandomForest(data).buildClassifiersAndSaveResults();
+        new LinearRegression(data).buildClassifiersAndSaveResults();
+        new RandomForest(data).buildClassifiersAndSaveResults();
         new KNN(data).buildClassifiersAndSaveResults();
         new M5Rules(data).buildClassifiersAndSaveResults();
     }

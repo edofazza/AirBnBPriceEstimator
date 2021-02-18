@@ -27,7 +27,7 @@ public class RandomForest {
     }
 
     public void buildClassifiersAndSaveResults(){
-        //buildRandomForest();
+        buildRandomForest();
         buildRandomForestWithAttributeSelection();
     }
 
@@ -39,7 +39,7 @@ public class RandomForest {
             for(int i=0; i<numFolds; i++){
                 executeCV(randData, i, null, "");
             }
-            System.out.println("linear regression terminated");
+            System.out.println("RandomForest terminated");
         }catch (Exception e){e.printStackTrace();}
     }
 
