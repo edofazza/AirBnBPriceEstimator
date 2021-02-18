@@ -11,7 +11,9 @@ public class Main {
     public static void main(String[] args) {
         try {
             Preprocesser.main(new String[0]);
+            System.out.println("PREPROCESSING HAS FINISHED");
             ClassifierBuilder.main(new String[0]);
+            System.out.println("CLASSIFICATION HAS FINISHED");
         } catch (Exception e) {
             e.printStackTrace();
         }
