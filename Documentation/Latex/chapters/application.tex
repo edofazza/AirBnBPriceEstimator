@@ -1,40 +1,43 @@
 \section{AirBnb Price Estimator App}
 
 \subsection{Introduction}
-\textbf{AirBnB Price Estimator} is a real estate cost estimation application in which the \textit{Users} insert some informations related to the B\&B they want to compute the price.
+\textbf{AirBnB Price Estimator} is a real estate cost estimation application in which the Users have the possibility to worth their own Bed and Breakfast simply by inserting some information related to it, in a very simple and fast way.
 
 \subsection{Use Cases List}
-There is no need for registration, every user can operate with the \textit{applicative} as they open it. The \textbf{use cases} are:
-
+There is no need for registration or authentication, every user can operate with the applicative as they open it.
+The can:
 \begin{itemize}
-	\item Select the classifier to use
+	\item Select the classifier they want to predict the price of their B\&B between:
 		\subitem - \textit{Random Forest}
 		\subitem - \textit{M5Rules}
-	\item Insert values for requested B\&B related characteristics
-	\item Compute the price using the algorithm previously selected
+	\item Insert the requested values for B\&B related characteristics
+	\item Estimate the most suitable price using the algorithm previously selected
 \end{itemize}
 
 \subsection{Application Guide}
-When the application is launched a window is opened telling the \textit{User} to choose between the two classifier previously discussed. The \textit{User} cannot undo the choose, if he/she clicks the incorrect classifier he/she has to reopen the application.
+When the application is launched a window is opened telling the \textbf{User} to choose between the two classifiers previously discussed. The User cannot undo the choose, once selected the classifier, in order to change it he/she must reopen the application.
+Selected the classifier, a new scene is loaded. This scene displays some \textit{Text Fields} and
+\textit{Radio Buttons}, corresponding to the subset of the overall features in out dataset that have been chosen by the \textbf{Attribute Selection process} (see chapter 3.3).
+If a Radio Button is not selected the system will understand that as the absence of the particular amenity the Radio Button refers to.
+After the \textbf{User} inputs all the values, a \textit{Button} called \textit{"PREDICT PRICE"} is located at
+the button of the window (scroll down if you don't see it). A click on it will display in a label the predicted price, just below the Button.
+The user can perform multiple predictions sequentially, just changing the contents of the \textit{Text Fields} or the selection of the \textit{Radio Button}s.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\textwidth]{img/app.png}  
-\end{figure}
+\subsection{Implementation Details}
+\subsubsection{Technologies}
+In order to ensure a higher level of accessibility to the users, we decided to adopt the \textbf{JavaFx} framework to create a very simple and intuitive \textit{Graphical User Interface}. 
+For what concerns the prediction system, we used again the \textit{Java Weka API} so that to make use of the model stored on the previous phases, with no need to compute it again.
 
-Selected the classifier, a new scene is loaded. This scene displays some \textit{TextField}s and \textit{RadioButton}s, those refer to a subset of the overall features in out dataset that is evaluated in the \textit{Attribute Selection} process we talked about in chapter 3.3.
+\subsubsection{Input Validation}
+To make the usage of the application easier, the User is not required to know the exact format of the nominal attributes, indeed such a property is ensured by an input validation system.
+In fact, to standardize the nominal attributes, in the preprocessing step we unified the format that is:
+\begin{itemize}
+	\item First letter uppercase
+	\item No other letter can be uppercase
+	\item All the special characters, included the blank space, are replaced by the underscore
+\end{itemize}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\textwidth]{img/mainApp.png}  
-\end{figure}
+After the user clicks the \textit{“PREDICT PRICE”} button, those operations are performed again on the input data. Anyway, the system is not capable of recognizing misspelled words and replacing it (\textbf{e.g}, If the use writes \textit{Alerton} instead of Allerton, the system will recognize it as a value out of the admitted range of the nominal attribute).
 
-If a \textit{RadioButton} is not selected the system will understand that as the absence of the particular amenity the \textit{RadioButton} refers to.
-
-After the \textit{User} imputes all the values a \textit{Button} saying \textit{"PREDICT PRICE"} is located at the button of the window (scroll down if you don't see it). After clicked on it,  a label displaying the predicted price is shown below the \textit{Button}.
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.3\textwidth]{img/pricePredicted.png}  
-\end{figure}
+\subsubsection{Model Loading and Prediction}
+When the user clicks on the classifier he/she wants to use, automatically the system loads it, through the \textit{Weka Api} function \textbf{SerializationHelper.read(File)}. Once loaded, it is kept in memory for the application lifespan, so that to speed up multiple predictions performed one after the other. After that, all the attributes that the classifier needs are passed to the GUI, which generates a new input field for each of them (a Radio Button for the binary ones, a \textit{Text Field} for all the others). The prediction of the price is made through the function \textbf{Classifier.classifyInstance(Instance)} that returns a double value. After the 2-decimal rounding, the value is output to the user.

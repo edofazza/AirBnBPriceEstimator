@@ -27,3 +27,7 @@
 \BOOKMARK [2][-]{subsection.4.1}{Introduction}{section.4}% 27
 \BOOKMARK [2][-]{subsection.4.2}{Use Cases List}{section.4}% 28
 \BOOKMARK [2][-]{subsection.4.3}{Application Guide}{section.4}% 29
+\BOOKMARK [2][-]{subsection.4.4}{Implementation Details}{section.4}% 30
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Technologies}{subsection.4.4}% 31
+\BOOKMARK [3][-]{subsubsection.4.4.2}{Input Validation}{subsection.4.4}% 32
+\BOOKMARK [3][-]{subsubsection.4.4.3}{Model Loading and Prediction}{subsection.4.4}% 33
